@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/%40udid-tools%2Fdevice-info)](https://www.npmjs.com/package/@udid-tools/device-info)
 [![CI](https://github.com/udid-tools/device-info/actions/workflows/ci.yml/badge.svg)](https://github.com/udid-tools/device-info/actions/workflows/ci.yml)
-[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/udid-tools/device-info/badge)](https://scorecard.dev/viewer/?uri=github.com/udid-tools/device-info)
+[![OpenSSF Scorecard](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.securityscorecards.dev%2Fprojects%2Fgithub.com%2Fudid-tools%2Fdevice-info%3Fbadge%3D1&query=%24.score&label=openssf%20scorecard)](https://scorecard.dev/viewer/?uri=github.com/udid-tools/device-info)
 
 `@udid-tools/device-info` is a small, framework-agnostic TypeScript catalog for resolving
 hardware product identifiers and operating system build numbers for use with Apple devices.
