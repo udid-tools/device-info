@@ -1,0 +1,42 @@
+name: OS build catalog addition
+description: Request a confirmed iOS or iPadOS build mapping.
+title: "[OS Build]: "
+labels: [catalog, os-version]
+body:
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Preflight
+      options:
+        - label: I searched the catalog and existing issues.
+          required: true
+        - label: The build and version are publicly available and confirmed.
+          required: true
+  - type: input
+    id: build
+    attributes:
+      label: Build number
+      placeholder: 23F77
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: OS version
+      placeholder: "26.5"
+    validations:
+      required: true
+  - type: dropdown
+    id: channel
+    attributes:
+      label: Release channel
+      options: [stable, beta, release candidate, rapid security response]
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Public sources
+      description: Link to sources that show the exact version and build together.
+    validations:
+      required: true

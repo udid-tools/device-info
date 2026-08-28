@@ -1,0 +1,102 @@
+name: Catalog watch
+
+on:
+  schedule:
+    - cron: "37 4 * * 3"
+      timezone: Europe/Kyiv
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: catalog-watch
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    name: Discover catalog candidates
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22.14.0
+          package-manager-cache: false
+
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Build library
+        run: npm run build
+
+      - name: Discover candidates
+        run: >-
+          node scripts/discover-catalog-updates.mjs
+          --json=catalog-candidates.json
+          --markdown=catalog-candidates.md
+
+      - name: Read candidate count
+        id: candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          count="$(node --input-type=module --eval="import report from './catalog-candidates.json' with { type: 'json' }; process.stdout.write(String(report.devices.length + report.osBuilds.length));")"
+          echo "count=${count}" >> "${GITHUB_OUTPUT}"
+
+      - name: Create one deduplicated catalog issue
+        if: steps.candidates.outputs.count != '0'
+        id: issue
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          existing="$(gh issue list --state open --label catalog-update --json number --jq '.[0].number // empty')"
+          if [[ -n "${existing}" ]]; then
+            gh issue comment "${existing}" --body-file catalog-candidates.md
+            echo "number=${existing}" >> "${GITHUB_OUTPUT}"
+          else
+            number="$(gh issue create --title '[Catalog]: Automated update candidates' --label catalog-update --body-file catalog-candidates.md | sed 's#.*/##')"
+            echo "number=${number}" >> "${GITHUB_OUTPUT}"
+          fi
+
+      - name: Assign the catalog task to Copilot when configured
+        if: steps.candidates.outputs.count != '0' && steps.issue.outputs.number != ''
+        continue-on-error: true
+        shell: bash
+        env:
+          COPILOT_AGENT_TOKEN: ${{ secrets.COPILOT_AGENT_TOKEN }}
+          ISSUE_NUMBER: ${{ steps.issue.outputs.number }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${COPILOT_AGENT_TOKEN}" ]]; then
+            echo "COPILOT_AGENT_TOKEN is not configured; leaving the issue for manual assignment."
+            exit 0
+          fi
+          payload="$(node --input-type=module --eval="process.stdout.write(JSON.stringify({assignees:['copilot-swe-agent[bot]'],agent_assignment:{target_repo:process.env.GITHUB_REPOSITORY,base_branch:'main',custom_instructions:'Use the repository catalog-maintainer instructions. Prepare a catalog-only pull request from this issue; do not merge, tag, publish, or change workflows.',custom_agent:'',model:''}}));")"
+          curl --fail-with-body --silent --show-error --request POST \
+            --header "Accept: application/vnd.github+json" \
+            --header "Authorization: Bearer ${COPILOT_AGENT_TOKEN}" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${ISSUE_NUMBER}/assignees" \
+            --data "${payload}"
+
+      - name: Upload discovery evidence
+        if: steps.candidates.outputs.count != '0'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: catalog-candidates
+          path: |
+            catalog-candidates.json
+            catalog-candidates.md
+          if-no-files-found: error
+          retention-days: 14

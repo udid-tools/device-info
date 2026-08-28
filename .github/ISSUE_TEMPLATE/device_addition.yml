@@ -1,0 +1,46 @@
+name: Device catalog addition
+description: Request a confirmed iPhone or iPad product identifier.
+title: "[Device]: "
+labels: [catalog, device]
+body:
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Preflight
+      options:
+        - label: I searched the catalog and existing issues.
+          required: true
+        - label: This is public, confirmed information and not a rumor or leak.
+          required: true
+  - type: input
+    id: identifier
+    attributes:
+      label: Product identifier
+      placeholder: iPhone16,1
+    validations:
+      required: true
+  - type: input
+    id: model
+    attributes:
+      label: Marketing model name
+      placeholder: iPhone 15 Pro
+    validations:
+      required: true
+  - type: dropdown
+    id: family
+    attributes:
+      label: Device family
+      options: [iPhone, iPad]
+    validations:
+      required: true
+  - type: textarea
+    id: variants
+    attributes:
+      label: Related regional or hardware variants
+  - type: textarea
+    id: sources
+    attributes:
+      label: Public sources
+      description: Link to sources that connect the exact identifier to the marketing model.
+    validations:
+      required: true

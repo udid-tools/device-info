@@ -1,0 +1,12 @@
+node_modules/
+dist/
+coverage/
+docs/dist/
+docs/.astro/
+*.tgz
+catalog-candidates.json
+catalog-candidates.md
+.DS_Store
+.env
+.env.*
+!.env.example

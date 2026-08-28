@@ -1,0 +1,30 @@
+name: New device family
+description: Propose support for another public Apple device family.
+title: "[Device Family]: "
+labels: [enhancement, device-family]
+body:
+  - type: input
+    id: family
+    attributes:
+      label: Device family
+      placeholder: Apple Watch
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Developer problem and use case
+    validations:
+      required: true
+  - type: textarea
+    id: identifiers
+    attributes:
+      label: Identifier format and stable data sources
+    validations:
+      required: true
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Public API and compatibility impact
+    validations:
+      required: true
