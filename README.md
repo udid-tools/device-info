@@ -98,7 +98,8 @@ public issue or test fixture. See [SECURITY.md](./SECURITY.md) for private repor
 
 ## Documentation
 
-Complete documentation is published at <https://udid-tools.github.io/device-info/>.
+Complete documentation lives in the repository's [`docs`](./docs) directory and is verified on
+every change.
 
 ## License
 

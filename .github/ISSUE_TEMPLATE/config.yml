@@ -4,5 +4,5 @@ contact_links:
     url: https://github.com/udid-tools/device-info/security/advisories/new
     about: Report vulnerabilities privately.
   - name: Documentation
-    url: https://udid-tools.github.io/device-info/
-    about: Read the installation, API, catalog, and contribution guides.
+    url: https://github.com/udid-tools/device-info/tree/main/docs
+    about: Read the installation, API, catalog, and contribution guides in the repository.

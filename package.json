@@ -14,7 +14,7 @@
     "typescript",
     "udid"
   ],
-  "homepage": "https://udid-tools.github.io/device-info/",
+  "homepage": "https://github.com/udid-tools/device-info#readme",
   "bugs": {
     "url": "https://github.com/udid-tools/device-info/issues"
   },

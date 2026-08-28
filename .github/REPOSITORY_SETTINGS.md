@@ -7,7 +7,8 @@ Complete this checklist before creating `v1.0.0`.
 - Public repository: `udid-tools/device-info`.
 - Enable dependency graph, Dependabot alerts, CodeQL, secret scanning, push protection, and private
   vulnerability reporting.
-- Set Pages source to GitHub Actions.
+- If organization policy enables Pages, set its source to GitHub Actions before restoring a Pages
+  deployment workflow. Documentation remains build-verified without deployment.
 - Default `GITHUB_TOKEN` permissions are read-only; release alone receives `packages: write`.
 - Protect `main` with required CI/security checks, one owner/CODEOWNERS review, resolved
   conversations, linear history, and no force pushes.
