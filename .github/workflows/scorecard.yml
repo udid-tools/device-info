@@ -24,7 +24,6 @@ jobs:
     permissions:
       contents: read
       id-token: write
-      security-events: write
 
     steps:
       - name: Check out repository
@@ -39,11 +38,6 @@ jobs:
           results_format: sarif
           publish_results: true
 
-      - name: Upload results to code scanning
-        uses: github/codeql-action/upload-sarif@cdf488f595d80d6e07e03d4674febd5ab45fa938 # v4.37.9
-        with:
-          sarif_file: results.sarif
-
       - name: Retain Scorecard results
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
@@ -51,3 +45,41 @@ jobs:
           path: results.sarif
           if-no-files-found: error
           retention-days: 14
+
+  upload-high-severity:
+    name: Upload high-severity findings
+    needs:
+      - scorecard
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    steps:
+      - name: Download complete Scorecard results
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: scorecard-results
+
+      - name: Keep high-severity findings for code scanning
+        shell: bash
+        run: |
+          set -euo pipefail
+          jq '
+            .runs |= map(
+              . as $run
+              | ($run.tool.driver.rules
+                | map(select((.properties["security-severity"] | tonumber) >= 7) | .id)
+              ) as $high_rule_ids
+              | .results |= map(
+                  select(.ruleId as $rule_id | $high_rule_ids | index($rule_id))
+                )
+            )
+          ' results.sarif > high-severity-results.sarif
+
+      - name: Upload high-severity results to code scanning
+        uses: github/codeql-action/upload-sarif@cdf488f595d80d6e07e03d4674febd5ab45fa938 # v4.37.9
+        with:
+          sarif_file: high-severity-results.sarif
