@@ -12,6 +12,18 @@ The package does not retrieve UDIDs, inspect user agents, parse configuration pr
 MDM/Profile Service work, access files or networks at runtime, log, emit telemetry, or expose a
 mutable catalog. `@udid-tools/core` owns Profile Service generation and parsing.
 
+## Commit and pull request titles
+
+- Every commit subject and pull request title must follow Conventional Commits:
+  `<type>[optional scope][!]: <description>`.
+- Use `fix` for every defect correction, including UI and CSS defects, and `feat` for new
+  behavior. Other appropriate types include `docs`, `refactor`, `test`, `perf`, `build`, `ci`,
+  `chore`, and `revert`.
+- Never use an untyped subject or title such as `Fix ...` or `Update ...`. A bug fix must start
+  with `fix:` or `fix(scope):`.
+- Check both the commit subject and pull request title before pushing or opening the pull request.
+  Keep them compliant when amending or updating an open pull request.
+
 ## Stable runtime contracts
 
 1. Runtime code has zero dependencies and works in browsers and Node.js 22.14 or newer.
