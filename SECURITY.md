@@ -20,4 +20,5 @@ integrity, dependency/tooling compromise, catalog poisoning, resource use, and m
 value handling.
 
 Every release is built once, tested as a packed consumer, checksummed, attested, and published as
-the same tarball to npm and GitHub Packages.
+the same tarball to npm and GitHub Packages. Every GitHub Release asset is keylessly signed with
+Sigstore and accompanied by a verification bundle; the tarball also has npm provenance.
