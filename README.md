@@ -14,6 +14,8 @@ hardware product identifiers and operating system build numbers for use with App
 It is ESM-only, works in browsers and Node.js, performs no network requests at runtime, and has
 no runtime dependencies.
 
+The current stable release is `1.0.1`.
+
 ## Installation
 
 ```bash
@@ -99,6 +101,17 @@ does not read environment variables, files, browser globals, network resources, 
 
 Do not include a real UDID, serial number, IMEI, MEID, or other private device identifier in a
 public issue or test fixture. See [SECURITY.md](./SECURITY.md) for private reporting.
+
+## Verify a release
+
+Every GitHub release includes the npm tarball, its SHA-256 checksum, a CycloneDX SBOM, and a
+keyless Sigstore bundle for each asset. npm also displays provenance produced by the protected
+GitHub Actions workflow.
+
+Follow the complete
+[release verification guide](https://udid-tools.github.io/device-info/project/release-integrity/)
+to verify the checksum, Sigstore identity, transparency-log inclusion, and GitHub artifact
+attestation before installation.
 
 ## Documentation
 

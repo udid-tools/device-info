@@ -1,6 +1,8 @@
 # Repository and registry setup
 
-Complete this checklist before creating `v1.0.0`.
+Review this checklist before every stable release. Bootstrap-only steps apply only when creating a
+new package; keep the resulting trusted-publisher and repository controls enabled for all later
+releases.
 
 ## GitHub
 
@@ -29,9 +31,10 @@ Environment: release
 Allowed action: npm publish
 ```
 
-Verify OIDC with a disposable bootstrap-tag publication before creating `v1.0.0`, then revoke
-bootstrap credentials and disallow traditional publish tokens. The public repository and exact
-`repository.url` are required for provenance.
+For a new package, verify OIDC with a disposable bootstrap-tag publication before the first stable
+release, then revoke bootstrap credentials and disallow traditional publish tokens. For this
+existing package, confirm that the trusted publisher remains active. The public repository and
+exact `repository.url` are required for provenance.
 
 ## GitHub Packages
 
@@ -48,5 +51,5 @@ bootstrap credentials and disallow traditional publish tokens. The public reposi
   `enhancement`, `os-version`, `security`, `dependencies`, `javascript`, `github-actions`,
   `breaking-change`, and `skip-changelog`.
 
-Do not create `v1.0.0` until CI, pack/consumer rehearsal, npm bootstrap/OIDC, GitHub Packages, tag
-rules, and release environment checks are complete.
+Before every stable release, confirm that CI, pack/consumer rehearsal, npm OIDC provenance, GitHub
+Packages, signed-tag rules, Sigstore asset signing, and release-environment review are complete.
