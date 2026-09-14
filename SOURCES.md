@@ -6,15 +6,26 @@ generated from public iOS and iPadOS version-history tables.
 
 ## Discovery sources
 
-The weekly discovery job currently inspects:
+The weekly discovery job currently inspects these device-identifier tables:
 
 - <https://en.wikipedia.org/wiki/List_of_iPhone_models>
 - <https://en.wikipedia.org/wiki/List_of_iPad_models>
+
+It discovers exact iOS and iPadOS build/version pairs from AppleDB's structured firmware API:
+
+- <https://api.appledb.dev/ios/iOS/main.json>
+- <https://github.com/littlebyteorg/appledb/blob/main/API.md>
+
+The iOS and iPadOS Wikipedia version-history pages remain useful human-readable summaries, but
+they no longer expose exact build numbers in their rendered tables and are therefore not used for
+automated build discovery:
+
 - <https://en.wikipedia.org/wiki/IOS_version_history>
 - <https://en.wikipedia.org/wiki/IPadOS_version_history>
 
 These pages are discovery sources, not evidence of vendor endorsement. Automated matches are
-unverified candidates until a maintainer reviews the exact row and supporting references.
+unverified candidates until a maintainer reviews the exact row and supporting references. The
+source formats and availability were last checked on 2026-09-14.
 
 ## Contribution evidence
 
