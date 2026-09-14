@@ -5,6 +5,13 @@ stable releases under npm's `latest` distribution tag.
 
 ## [Unreleased]
 
+### Fixed
+
+- Restored automated iOS and iPadOS build discovery with a structured firmware source and made
+  source-health checks validate parsed records instead of URL-encoded HTML fragments.
+- Made missing, expired, or rejected Copilot assignment credentials fail visibly after the
+  discovery issue is created instead of silently completing without a pull request.
+
 ## [1.0.2] - 2026-09-14
 
 ### Changed

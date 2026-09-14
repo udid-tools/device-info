@@ -45,7 +45,15 @@ exact `repository.url` are required for provenance.
 ## Copilot catalog automation
 
 - Enable Copilot cloud agent for the repository.
-- Add a narrowly scoped `COPILOT_AGENT_TOKEN` only if fully automatic issue assignment is desired.
+- For fully automatic issue assignment, create a fine-grained personal access token owned by a
+  Copilot-licensed user. Limit repository access to `udid-tools/device-info`; grant repository
+  permissions `Actions`, `Contents`, `Issues`, and `Pull requests` as read/write. Metadata read
+  access is added automatically. Use a short expiration and rotate the token before it expires.
+- Add the token under **Settings → Secrets and variables → Actions** as the repository secret
+  `COPILOT_AGENT_TOKEN`. Never place its value in a file, issue, log, or pull request.
+- Verify that the repository's assignable actors include `copilot-swe-agent` before relying on the
+  scheduled workflow. The REST issue-assignment API requires a user token; `GITHUB_TOKEN` is an
+  installation token and cannot replace this secret.
 - The token must not be available to pull request jobs or release jobs.
 - Create labels: `bug`, `catalog`, `catalog-update`, `device`, `device-family`, `documentation`,
   `enhancement`, `os-version`, `security`, `dependencies`, `javascript`, `github-actions`,

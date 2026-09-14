@@ -71,7 +71,6 @@ jobs:
 
       - name: Assign the catalog task to Copilot when configured
         if: steps.candidates.outputs.count != '0' && steps.issue.outputs.number != ''
-        continue-on-error: true
         shell: bash
         env:
           COPILOT_AGENT_TOKEN: ${{ secrets.COPILOT_AGENT_TOKEN }}
@@ -79,8 +78,8 @@ jobs:
         run: |
           set -euo pipefail
           if [[ -z "${COPILOT_AGENT_TOKEN}" ]]; then
-            echo "COPILOT_AGENT_TOKEN is not configured; leaving the issue for manual assignment."
-            exit 0
+            echo "::error::COPILOT_AGENT_TOKEN is not configured; the catalog issue requires manual assignment."
+            exit 1
           fi
           payload="$(node --input-type=module --eval="process.stdout.write(JSON.stringify({assignees:['copilot-swe-agent[bot]'],agent_assignment:{target_repo:process.env.GITHUB_REPOSITORY,base_branch:'main',custom_instructions:'Use the repository catalog-maintainer instructions. Prepare a catalog-only pull request from this issue; do not merge, tag, publish, or change workflows.',custom_agent:'',model:''}}));")"
           curl --fail-with-body --silent --show-error --request POST \
