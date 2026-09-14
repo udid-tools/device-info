@@ -5,6 +5,19 @@ stable releases under npm's `latest` distribution tag.
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-09-14
+
+### Changed
+
+- Refreshed the verified documentation and catalog-maintenance toolchain with Astro 7.3.2,
+  ESLint 10.10.0, `typedoc-plugin-frontmatter` 1.3.2, and `typescript-eslint` 8.70.0. The runtime
+  API and catalog are unchanged from `1.0.1`.
+
+### Security
+
+- Updated the pinned CodeQL Action to 4.38.0 and its default CodeQL bundle to 2.27.0.
+- Adopted Astro 7.3.2's stricter escaping for dynamic MDX `<script>` and `<style>` content.
+
 ## [1.0.1] - 2026-09-13
 
 ### Changed
@@ -34,6 +47,7 @@ stable releases under npm's `latest` distribution tag.
 - Offline catalog integrity tests, documentation, issue forms, and weekly catalog discovery.
 - Hardened CI, security scanning, supply-chain attestations, and dual-registry release automation.
 
-[unreleased]: https://github.com/udid-tools/device-info/compare/v1.0.1...HEAD
+[unreleased]: https://github.com/udid-tools/device-info/compare/v1.0.2...HEAD
+[1.0.2]: https://github.com/udid-tools/device-info/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/udid-tools/device-info/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/udid-tools/device-info/releases/tag/v1.0.0
