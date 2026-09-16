@@ -50,27 +50,40 @@ jobs:
         run: |
           set -euo pipefail
           count="$(node --input-type=module --eval="import report from './catalog-candidates.json' with { type: 'json' }; process.stdout.write(String(report.devices.length + report.osBuilds.length));")"
+          fingerprint="$(node --input-type=module --eval="import { createHash } from 'node:crypto'; import report from './catalog-candidates.json' with { type: 'json' }; const candidates = { devices: report.devices, osBuilds: report.osBuilds }; process.stdout.write(createHash('sha256').update(JSON.stringify(candidates)).digest('hex'));")"
           echo "count=${count}" >> "${GITHUB_OUTPUT}"
+          echo "fingerprint=${fingerprint}" >> "${GITHUB_OUTPUT}"
 
-      - name: Create one deduplicated catalog issue
+      - name: Create one issue per candidate set
         if: steps.candidates.outputs.count != '0'
         id: issue
         shell: bash
         env:
+          CANDIDATE_FINGERPRINT: ${{ steps.candidates.outputs.fingerprint }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-          existing="$(gh issue list --state open --label catalog-update --json number --jq '.[0].number // empty')"
+          marker="<!-- catalog-fingerprint:${CANDIDATE_FINGERPRINT} -->"
+          existing="$(gh issue list --state open --label catalog-update --limit 100 --json number,body --jq ".[] | select((.body // \"\") | contains(\"${marker}\")) | .number" | head -n 1)"
           if [[ -n "${existing}" ]]; then
-            gh issue comment "${existing}" --body-file catalog-candidates.md
             echo "number=${existing}" >> "${GITHUB_OUTPUT}"
+            echo "created=false" >> "${GITHUB_OUTPUT}"
+            assigned="$(gh issue view "${existing}" --json assignees --jq 'any(.assignees[]; .login == "Copilot")')"
+            if [[ "${assigned}" == "true" ]]; then
+              echo "needs_assignment=false" >> "${GITHUB_OUTPUT}"
+            else
+              echo "needs_assignment=true" >> "${GITHUB_OUTPUT}"
+            fi
           else
+            printf '\n%s\n' "${marker}" >> catalog-candidates.md
             number="$(gh issue create --title '[Catalog]: Automated update candidates' --label catalog-update --body-file catalog-candidates.md | sed 's#.*/##')"
             echo "number=${number}" >> "${GITHUB_OUTPUT}"
+            echo "created=true" >> "${GITHUB_OUTPUT}"
+            echo "needs_assignment=true" >> "${GITHUB_OUTPUT}"
           fi
 
       - name: Assign the catalog task to Copilot when configured
-        if: steps.candidates.outputs.count != '0' && steps.issue.outputs.number != ''
+        if: steps.issue.outputs.needs_assignment == 'true' && steps.issue.outputs.number != ''
         shell: bash
         env:
           COPILOT_AGENT_TOKEN: ${{ secrets.COPILOT_AGENT_TOKEN }}
@@ -81,7 +94,7 @@ jobs:
             echo "::error::COPILOT_AGENT_TOKEN is not configured; the catalog issue requires manual assignment."
             exit 1
           fi
-          payload="$(node --input-type=module --eval="process.stdout.write(JSON.stringify({assignees:['copilot-swe-agent[bot]'],agent_assignment:{target_repo:process.env.GITHUB_REPOSITORY,base_branch:'main',custom_instructions:'Use the repository catalog-maintainer instructions. Prepare a catalog-only pull request from this issue; do not merge, tag, publish, or change workflows.',custom_agent:'',model:''}}));")"
+          payload="$(node --input-type=module --eval="process.stdout.write(JSON.stringify({assignees:['copilot-swe-agent[bot]'],agent_assignment:{target_repo:process.env.GITHUB_REPOSITORY,base_branch:'main',custom_instructions:'Use the repository catalog-maintainer instructions. Treat each device identifier/model pair in the issue as a cross-validated structured mapping: verify both linked records, add the exact pair shown, and never infer or substitute adjacent identifiers. Prepare a catalog-only pull request; do not merge, tag, publish, or change workflows.',custom_agent:'',model:''}}));")"
           curl --fail-with-body --silent --show-error --request POST \
             --header "Accept: application/vnd.github+json" \
             --header "Authorization: Bearer ${COPILOT_AGENT_TOKEN}" \

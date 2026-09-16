@@ -89,10 +89,11 @@ require explicit design review and a minor or major release as appropriate. See
 
 ## Automated catalog watch
 
-A weekly GitHub Action checks public reference pages for identifiers and builds that are absent
-from the committed catalog. It creates a discovery issue and can assign that issue to GitHub
-Copilot. Copilot may prepare a catalog-only pull request, but cannot merge, tag, or publish.
-Every catalog change requires CI and owner/CODEOWNERS review.
+A weekly GitHub Action cross-validates device identifiers between AppleDB and IPSW.me and checks
+AppleDB for OS builds that are absent from the committed catalog. Each new candidate set gets one
+deduplicated discovery issue that is assigned to GitHub Copilot. Copilot may prepare a catalog-only
+pull request, but cannot merge, tag, or publish. Every catalog change requires CI and
+owner/CODEOWNERS review.
 
 ## Security and privacy
 
