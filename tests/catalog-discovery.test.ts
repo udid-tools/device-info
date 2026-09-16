@@ -1,29 +1,99 @@
 import { describe, expect, it } from "vitest";
 import {
-  inspectDeviceSource,
+  inspectDeviceSources,
   inspectOsSource,
   normalizeAppleDbVersion,
+  normalizeDeviceModelName,
 } from "../scripts/discover-catalog-updates.mjs";
 
 describe("catalog discovery", () => {
-  it("counts device identifiers only in rendered table text", () => {
-    const html = `
-      <a href="/wiki/Foo%2FiPhone99,9">not a table candidate</a>
-      <table><tr><td>iPhone19,1</td><td>iPhone18,1</td></tr></table>
-    `;
+  it("emits exact device mappings confirmed by both structured catalogs", () => {
+    const result = inspectDeviceSources(
+      [
+        deviceRecord("iPhone19,2", "iPhone 18 Pro"),
+        deviceRecord("iPhone19,3", "iPhone 18 Pro Max (US)"),
+        deviceRecord("iPhone19,4", "iPhone Duo"),
+        deviceRecord("iPhone18,1", "iPhone 17 Pro"),
+        deviceRecord("iPhone19,6", "iPhone Duo"),
+        deviceRecord("iPad17,1", "iPad Pro 11-inch Wi-Fi (M5)"),
+      ],
+      [
+        { identifier: "iPhone19,2", name: "iPhone 18 Pro" },
+        { identifier: "iPhone19,3", name: "iPhone 18 Pro Max (U.S.)" },
+        { identifier: "iPhone18,1", name: "iPhone 17 Pro" },
+        { identifier: "iPhone19,6", name: "iPhone Fold" },
+        { identifier: "iPhone19,7", name: "iPhone 18 Pro Max" },
+        { identifier: "iPad17,1", name: "iPad Pro 11-inch (M5, WiFi)" },
+      ],
+      { "iPhone18,1": "iPhone 17 Pro" },
+      {
+        appleDb: {
+          label: "AppleDB",
+          url: "https://api.example.test/device/main.json",
+          detailBaseUrl: "https://api.example.test/device/",
+          detailSuffix: ".json",
+        },
+        ipsw: {
+          label: "IPSW.me",
+          url: "https://ipsw.example.test/v4/devices",
+          detailBaseUrl: "https://ipsw.example.test/v4/device/",
+          detailSuffix: "?type=ipsw",
+        },
+      }
+    );
 
-    expect(
-      inspectDeviceSource(html, "https://example.test/devices", { "iPhone18,1": "Known" })
-    ).toEqual({
-      matchCount: 2,
+    expect(result).toEqual({
+      appleDbMatchCount: 6,
+      ipswMatchCount: 6,
+      confirmedMatchCount: 5,
       candidates: [
         {
-          identifier: "iPhone19,1",
-          context: "iPhone19,1iPhone18,1",
-          source: "https://example.test/devices",
+          identifier: "iPhone19,2",
+          model: "iPhone 18 Pro",
+          context: "AppleDB: iPhone 18 Pro; released 2026-09-18; IPSW.me: iPhone 18 Pro",
+          source: "https://api.example.test/device/iPhone19%2C2.json",
+          evidence: "https://ipsw.example.test/v4/device/iPhone19%2C2?type=ipsw",
+        },
+        {
+          identifier: "iPhone19,3",
+          model: "iPhone 18 Pro Max",
+          context:
+            "AppleDB: iPhone 18 Pro Max (US); released 2026-09-18; IPSW.me: iPhone 18 Pro Max (U.S.)",
+          source: "https://api.example.test/device/iPhone19%2C3.json",
+          evidence: "https://ipsw.example.test/v4/device/iPhone19%2C3?type=ipsw",
+        },
+        {
+          identifier: "iPad17,1",
+          model: "iPad Pro 11-inch (M5)",
+          context:
+            "AppleDB: iPad Pro 11-inch Wi-Fi (M5); released 2026-09-18; IPSW.me: iPad Pro 11-inch (M5, WiFi)",
+          source: "https://api.example.test/device/iPad17%2C1.json",
+          evidence: "https://ipsw.example.test/v4/device/iPad17%2C1?type=ipsw",
+        },
+      ],
+      conflicts: [
+        {
+          identifier: "iPhone19,6",
+          appleDbModel: "iPhone Duo",
+          ipswModel: "iPhone Fold",
+          appleDbSource: "https://api.example.test/device/iPhone19%2C6.json",
+          ipswSource: "https://ipsw.example.test/v4/device/iPhone19%2C6?type=ipsw",
         },
       ],
     });
+  });
+
+  it("normalizes regional and connectivity variants to catalog model names", () => {
+    expect(normalizeDeviceModelName("iPhone 18 Pro Max (U.S.)")).toBe("iPhone 18 Pro Max");
+    expect(normalizeDeviceModelName("iPhone 18 Pro Max (Global)")).toBe("iPhone 18 Pro Max");
+    expect(normalizeDeviceModelName("iPad Pro 11-inch Wi-Fi (M5)")).toBe("iPad Pro 11-inch (M5)");
+    expect(normalizeDeviceModelName("iPad Air 13-inch (M4) Wi-Fi + Cellular")).toBe(
+      "iPad Air 13-inch (M4)"
+    );
+    expect(normalizeDeviceModelName("iPad Pro 11-inch (M5, Cellular)")).toBe(
+      "iPad Pro 11-inch (M5)"
+    );
+    expect(normalizeDeviceModelName("iPad Pro (M4, 13-inch, WiFi)")).toBe("iPad Pro 13-inch (M4)");
   });
 
   it("discovers current device OS builds without historical, future, or simulator noise", () => {
@@ -92,7 +162,20 @@ describe("catalog discovery", () => {
       inspectOsSource({}, "https://api.example.test/os.json", {}, "2026-09-14T12:00:00.000Z")
     ).toThrow("AppleDB returned an unexpected response");
   });
+
+  it("rejects unexpected structured device responses", () => {
+    expect(() => inspectDeviceSources({}, [], {})).toThrow(
+      "AppleDB returned an unexpected response"
+    );
+    expect(() => inspectDeviceSources([], {}, {})).toThrow(
+      "IPSW.me returned an unexpected response"
+    );
+  });
 });
+
+function deviceRecord(identifier: string, name: string): Record<string, unknown> {
+  return { identifier: [identifier], name, released: "2026-09-18" };
+}
 
 function osRecord(overrides: Record<string, unknown>): Record<string, unknown> {
   const build = typeof overrides["build"] === "string" ? overrides["build"] : "24A437";

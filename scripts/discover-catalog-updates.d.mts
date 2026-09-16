@@ -1,7 +1,24 @@
 export interface DeviceCandidate {
   identifier: string;
+  model: string;
   context: string;
   source: string;
+  evidence: string;
+}
+
+export interface DeviceConflict {
+  identifier: string;
+  appleDbModel: string;
+  ipswModel: string;
+  appleDbSource: string;
+  ipswSource: string;
+}
+
+export interface DeviceSourceConfig {
+  label: string;
+  url: string;
+  detailBaseUrl: string;
+  detailSuffix: string;
 }
 
 export interface OsCandidate {
@@ -11,11 +28,18 @@ export interface OsCandidate {
   source: string;
 }
 
-export function inspectDeviceSource(
-  html: string,
-  source: string,
-  deviceModels: Readonly<Record<string, string>>
-): { candidates: DeviceCandidate[]; matchCount: number };
+export function inspectDeviceSources(
+  appleDbPayload: unknown,
+  ipswPayload: unknown,
+  deviceModels: Readonly<Record<string, string>>,
+  sources?: { appleDb: DeviceSourceConfig; ipsw: DeviceSourceConfig }
+): {
+  candidates: DeviceCandidate[];
+  conflicts: DeviceConflict[];
+  appleDbMatchCount: number;
+  ipswMatchCount: number;
+  confirmedMatchCount: number;
+};
 
 export function inspectOsSource(
   payload: unknown,
@@ -25,3 +49,5 @@ export function inspectOsSource(
 ): { candidates: OsCandidate[]; matchCount: number };
 
 export function normalizeAppleDbVersion(value: string): string;
+
+export function normalizeDeviceModelName(value: string): string;
