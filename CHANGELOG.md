@@ -5,6 +5,11 @@ stable releases under npm's `latest` distribution tag.
 
 ## [Unreleased]
 
+### Added
+
+- Verified and added iOS/iPadOS build mappings for 18.7.10, 26.6, 26.6.1, 26.6.2, 26.7, and
+  27.0 preview/release builds from AppleDB's published firmware records.
+
 ### Fixed
 
 - Restored automated iOS and iPadOS build discovery with a structured firmware source and made

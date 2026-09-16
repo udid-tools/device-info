@@ -78,6 +78,32 @@ describe("OS version resolution", () => {
     });
   });
 
+  it("resolves newly verified stable, release-candidate, and iPadOS-only builds", () => {
+    expect(getOsVersion({ productIdentifier: "iPhone16,1", build: "22H374" })).toEqual({
+      known: true,
+      platform: "iOS",
+      version: "18.7.10",
+      build: "22H374",
+      releaseChannel: "stable",
+    });
+    expect(getOsVersion({ productIdentifier: "iPhone16,1", build: "24A435" })).toEqual({
+      known: true,
+      platform: "iOS",
+      version: "27.0",
+      build: "24A435",
+      releaseChannel: "release-candidate",
+      releaseLabel: "release candidate",
+    });
+    expect(getOsVersion({ productIdentifier: "iPad16,6", build: "24A5380l" })).toEqual({
+      known: true,
+      platform: "iPadOS",
+      version: "27.0",
+      build: "24A5380l",
+      releaseChannel: "beta",
+      releaseLabel: "beta 3",
+    });
+  });
+
   it("formats known, unknown, empty, and already formatted input", () => {
     expect(formatOsVersion({ productIdentifier: "iPhone16,1", build: "23F77" })).toEqual({
       displayValue: "iOS 26.5",
