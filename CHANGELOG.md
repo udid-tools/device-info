@@ -7,6 +7,8 @@ stable releases under npm's `latest` distribution tag.
 
 ### Fixed
 
+- Replaced ambiguous Wikipedia hardware-string discovery with structured AppleDB device mappings
+  cross-validated against IPSW.me, and made each new candidate set start a fresh Copilot task.
 - Restored automated iOS and iPadOS build discovery with a structured firmware source and made
   source-health checks validate parsed records instead of URL-encoded HTML fragments.
 - Made missing, expired, or rejected Copilot assignment credentials fail visibly after the

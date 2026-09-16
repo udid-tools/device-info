@@ -1,30 +1,33 @@
 import { writeFile } from "node:fs/promises";
 import process from "node:process";
-import { pathToFileURL, URL, URLSearchParams } from "node:url";
-import { load } from "cheerio";
+import { pathToFileURL } from "node:url";
 
 const USER_AGENT =
   "UDIDToolsDeviceInfoCatalog/1.0 (+https://github.com/udid-tools/device-info; hello@udid.tools)";
-const WIKIPEDIA_API = "https://en.wikipedia.org/w/api.php";
+const APPLEDB_DEVICE_API = "https://api.appledb.dev/device/main.json";
+const IPSW_DEVICE_API = "https://api.ipsw.me/v4/devices";
 const APPLEDB_OS_API = "https://api.appledb.dev/ios/iOS/main.json";
-const MINIMUM_DEVICE_MATCHES = 5;
+const MINIMUM_DEVICE_RECORDS = 100;
 const MINIMUM_OS_RECORDS = 100;
 const BUILD_PATTERN = /^\d{1,2}[A-Z]\d{1,8}[a-z]?$/;
 const DEVICE_IDENTIFIER_PATTERN = /^(?:iPhone|iPad)\d+,\d+$/;
-const DEVICE_IDENTIFIER_SEARCH_PATTERN = /(?:iPhone|iPad)\d+,\d+/g;
 const NUMERIC_VERSION_PATTERN = /^\d+(?:\.\d+){0,2}/;
-const DEVICE_SOURCES = [
-  {
-    kind: "device",
-    page: "List_of_iPhone_models",
-    url: "https://en.wikipedia.org/wiki/List_of_iPhone_models",
+const DEVICE_SOURCES = {
+  appleDb: {
+    kind: "device-primary",
+    label: "AppleDB",
+    url: APPLEDB_DEVICE_API,
+    detailBaseUrl: "https://api.appledb.dev/device/",
+    detailSuffix: ".json",
   },
-  {
-    kind: "device",
-    page: "List_of_iPad_models",
-    url: "https://en.wikipedia.org/wiki/List_of_iPad_models",
+  ipsw: {
+    kind: "device-evidence",
+    label: "IPSW.me",
+    url: IPSW_DEVICE_API,
+    detailBaseUrl: "https://api.ipsw.me/v4/device/",
+    detailSuffix: "?type=ipsw",
   },
-];
+};
 const OS_SOURCE = {
   kind: "os",
   url: APPLEDB_OS_API,
@@ -35,56 +38,121 @@ function optionValue(name) {
   return process.argv.find((argument) => argument.startsWith(prefix))?.slice(prefix.length);
 }
 
-function normalizeText(value) {
-  return value
-    .replace(/\[[^\]]*]/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
 async function fetchJson(url, label) {
   const response = await globalThis.fetch(url, { headers: { "User-Agent": USER_AGENT } });
   if (!response.ok) throw new Error(`${label} returned ${response.status}`);
   return response.json();
 }
 
-async function fetchWikipediaPageHtml(page) {
-  const url = new URL(WIKIPEDIA_API);
-  url.search = new URLSearchParams({
-    action: "parse",
-    format: "json",
-    origin: "*",
-    page,
-    prop: "text",
-  }).toString();
-
-  const payload = await fetchJson(url, `Wikipedia page ${page}`);
-  const html =
-    typeof payload?.parse?.text === "string"
-      ? payload.parse.text
-      : typeof payload?.parse?.text?.["*"] === "string"
-        ? payload.parse.text["*"]
-        : undefined;
-  if (!html) throw new Error(`Wikipedia returned an unexpected response for ${page}`);
-  return html;
+export function normalizeDeviceModelName(value) {
+  return value
+    .replace(/\s+/g, " ")
+    .replace(/ Wi-Fi(?: \+ (?:Cellular|3G))?/g, "")
+    .replace(/, (?:Cellular|WiFi|1TB Model)(?=\))/g, "")
+    .replace(/ \((?:Cellular|WiFi)\)$/, "")
+    .replace(/\((M\d+), (\d+(?:\.\d+)?-inch)\)/, "$2 ($1)")
+    .replace(
+      / \((?:CDMA|GSM(?:, \d{4})?|China|China mainland|Global|MM|TD-LTE|US|U\.S\.|VZ|\d+(?:GB|TB)|Mid \d{4})\)$/,
+      ""
+    )
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
-export function inspectDeviceSource(html, source, deviceModels) {
-  const $ = load(html);
-  const candidates = [];
+function deviceDetailUrl(source, identifier) {
+  return `${source.detailBaseUrl}${encodeURIComponent(identifier)}${source.detailSuffix}`;
+}
+
+function indexDeviceSource(payload, source) {
+  if (!Array.isArray(payload)) {
+    throw new Error(`${source.label} returned an unexpected response for ${source.url}`);
+  }
+
+  const records = new Map();
   let matchCount = 0;
 
-  $("tr").each((_, row) => {
-    const context = normalizeText($(row).text());
-    const identifiers = new Set(context.match(DEVICE_IDENTIFIER_SEARCH_PATTERN) ?? []);
-    matchCount += identifiers.size;
+  for (const record of payload) {
+    if (record === null || typeof record !== "object" || typeof record.name !== "string") continue;
+    const identifiers = Array.isArray(record.identifier)
+      ? record.identifier
+      : typeof record.identifier === "string"
+        ? [record.identifier]
+        : [];
+
     for (const identifier of identifiers) {
-      if (!(identifier in deviceModels)) {
-        candidates.push({ identifier, context: context.slice(0, 800), source });
+      if (typeof identifier !== "string" || !DEVICE_IDENTIFIER_PATTERN.test(identifier)) continue;
+      matchCount += 1;
+      const model = normalizeDeviceModelName(record.name);
+      if (!model.startsWith(identifier.startsWith("iPhone") ? "iPhone" : "iPad")) continue;
+
+      const candidate = {
+        identifier,
+        model,
+        rawName: record.name,
+        released: typeof record.released === "string" ? record.released : undefined,
+        source: deviceDetailUrl(source, identifier),
+      };
+      const existing = records.get(identifier);
+      if (existing && existing.model !== candidate.model) {
+        throw new Error(
+          `${source.label} maps ${identifier} to conflicting models: ${existing.rawName} and ${candidate.rawName}`
+        );
       }
+      if (!existing) records.set(identifier, candidate);
     }
-  });
-  return { candidates, matchCount };
+  }
+
+  return { records, matchCount };
+}
+
+export function inspectDeviceSources(
+  appleDbPayload,
+  ipswPayload,
+  deviceModels,
+  sources = DEVICE_SOURCES
+) {
+  const appleDb = indexDeviceSource(appleDbPayload, sources.appleDb);
+  const ipsw = indexDeviceSource(ipswPayload, sources.ipsw);
+  const candidates = [];
+  const conflicts = [];
+  let confirmedMatchCount = 0;
+
+  for (const [identifier, primary] of appleDb.records) {
+    const evidence = ipsw.records.get(identifier);
+    if (!evidence) continue;
+    confirmedMatchCount += 1;
+    if (identifier in deviceModels) continue;
+
+    if (primary.model !== evidence.model) {
+      conflicts.push({
+        identifier,
+        appleDbModel: primary.rawName,
+        ipswModel: evidence.rawName,
+        appleDbSource: primary.source,
+        ipswSource: evidence.source,
+      });
+      continue;
+    }
+
+    candidates.push({
+      identifier,
+      model: primary.model,
+      context: [
+        `AppleDB: ${primary.rawName}${primary.released ? `; released ${primary.released}` : ""}`,
+        `IPSW.me: ${evidence.rawName}`,
+      ].join("; "),
+      source: primary.source,
+      evidence: evidence.source,
+    });
+  }
+
+  return {
+    candidates,
+    conflicts,
+    appleDbMatchCount: appleDb.matchCount,
+    ipswMatchCount: ipsw.matchCount,
+    confirmedMatchCount,
+  };
 }
 
 function numericVersion(value) {
@@ -243,7 +311,21 @@ function markdownReport(report) {
   if (report.devices.length) {
     lines.push("### Device identifiers", "");
     for (const item of report.devices) {
-      lines.push(`- \`${item.identifier}\` — [source](${item.source})`, `  - ${item.context}`);
+      lines.push(
+        `- \`${item.identifier}\` → \`${item.model}\` — [AppleDB](${item.source}) · [IPSW.me](${item.evidence})`,
+        `  - ${item.context}`
+      );
+    }
+    lines.push("");
+  }
+
+  if (report.deviceConflicts.length) {
+    lines.push("### Deferred device-source conflicts", "");
+    for (const item of report.deviceConflicts) {
+      lines.push(
+        `- \`${item.identifier}\` — [AppleDB](${item.appleDbSource}) says \`${item.appleDbModel}\`; [IPSW.me](${item.ipswSource}) says \`${item.ipswModel}\``,
+        "  - Do not change the catalog until the structured sources agree."
+      );
     }
     lines.push("");
   }
@@ -262,7 +344,8 @@ function markdownReport(report) {
   lines.push(
     "### Required pull request work",
     "",
-    "- Verify every candidate and discard navigation, footnote, rumor, and unrelated-platform matches.",
+    "- For every device candidate, verify both structured links and add the exact identifier/model pair shown.",
+    "- Do not infer identifiers, substitute sequential values, or add deferred source conflicts.",
     "- Add only confirmed public identifiers/builds to the canonical data files.",
     "- Add or update tests, `SOURCES.md`, and `CHANGELOG.md`.",
     "- Do not change the public API, workflows, package version, or supported device families.",
@@ -278,22 +361,29 @@ async function main() {
     import("../dist/data/os-builds.js"),
   ]);
   const generatedAt = new Date().toISOString();
-  const deviceCandidates = [];
   const observations = [];
-
-  for (const source of DEVICE_SOURCES) {
-    const html = await fetchWikipediaPageHtml(source.page);
-    const inspection = inspectDeviceSource(html, source.url, DEVICE_MODELS);
-    if (inspection.matchCount < MINIMUM_DEVICE_MATCHES) {
+  const [appleDbDevicePayload, ipswDevicePayload, osPayload] = await Promise.all([
+    fetchJson(DEVICE_SOURCES.appleDb.url, DEVICE_SOURCES.appleDb.label),
+    fetchJson(DEVICE_SOURCES.ipsw.url, DEVICE_SOURCES.ipsw.label),
+    fetchJson(OS_SOURCE.url, "AppleDB"),
+  ]);
+  const deviceInspection = inspectDeviceSources(
+    appleDbDevicePayload,
+    ipswDevicePayload,
+    DEVICE_MODELS
+  );
+  for (const { source, matchCount } of [
+    { source: DEVICE_SOURCES.appleDb, matchCount: deviceInspection.appleDbMatchCount },
+    { source: DEVICE_SOURCES.ipsw, matchCount: deviceInspection.ipswMatchCount },
+  ]) {
+    if (matchCount < MINIMUM_DEVICE_RECORDS) {
       throw new Error(
-        `Source structure check failed for ${source.url}: only ${inspection.matchCount} matches`
+        `Source structure check failed for ${source.url}: only ${matchCount} records`
       );
     }
-    observations.push({ kind: source.kind, source: source.url, matchCount: inspection.matchCount });
-    deviceCandidates.push(...inspection.candidates);
+    observations.push({ kind: source.kind, source: source.url, matchCount });
   }
 
-  const osPayload = await fetchJson(OS_SOURCE.url, "AppleDB");
   const osInspection = inspectOsSource(osPayload, OS_SOURCE.url, OS_BUILD_VERSIONS, generatedAt);
   if (osInspection.matchCount < MINIMUM_OS_RECORDS) {
     throw new Error(
@@ -308,9 +398,10 @@ async function main() {
 
   const report = {
     generatedAt,
-    sources: [...DEVICE_SOURCES.map(({ url }) => url), OS_SOURCE.url],
+    sources: [DEVICE_SOURCES.appleDb.url, DEVICE_SOURCES.ipsw.url, OS_SOURCE.url],
     observations,
-    devices: uniqueBy(deviceCandidates, "identifier"),
+    devices: uniqueBy(deviceInspection.candidates, "identifier"),
+    deviceConflicts: uniqueBy(deviceInspection.conflicts, "identifier"),
     osBuilds: uniqueBy(osInspection.candidates, "build"),
   };
 
