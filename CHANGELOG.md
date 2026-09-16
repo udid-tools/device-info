@@ -7,6 +7,8 @@ stable releases under npm's `latest` distribution tag.
 
 ### Added
 
+- Verified and added `iPhone19,2` (`iPhone 18 Pro`) and `iPhone19,3`/`iPhone19,7`
+  (`iPhone 18 Pro Max`) device mappings from AppleDB records cross-validated against IPSW.me.
 - Verified and added iOS/iPadOS build mappings for 18.7.10, 26.6, 26.6.1, 26.6.2, 26.7, and
   27.0 preview/release builds from AppleDB's published firmware records.
 
