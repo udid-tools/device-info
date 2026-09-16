@@ -191,6 +191,41 @@ describe("OS version resolution", () => {
     }
   });
 
+  it("keeps newly added post-iPadOS builds platform-aware for iPad identifiers", () => {
+    for (const addition of [
+      { build: "22H374", version: "18.7.10", releaseChannel: "stable" as const },
+      {
+        build: "23G82",
+        version: "26.6.1",
+        releaseChannel: "release-candidate" as const,
+        releaseLabel: "release candidate",
+      },
+      { build: "23G83", version: "26.6.1", releaseChannel: "stable" as const },
+      {
+        build: "24A435",
+        version: "27.0",
+        releaseChannel: "release-candidate" as const,
+        releaseLabel: "release candidate",
+      },
+      { build: "24A437", version: "27.0", releaseChannel: "stable" as const },
+      {
+        build: "24A5430a",
+        version: "27.0",
+        releaseChannel: "beta" as const,
+        releaseLabel: "beta 8",
+      },
+    ]) {
+      expect(getOsVersion({ productIdentifier: "iPad16,6", build: addition.build })).toEqual({
+        known: true,
+        platform: "iPadOS",
+        version: addition.version,
+        build: addition.build,
+        releaseChannel: addition.releaseChannel,
+        ...(addition.releaseLabel ? { releaseLabel: addition.releaseLabel } : {}),
+      });
+    }
+  });
+
   it("formats known, unknown, empty, and already formatted input", () => {
     expect(formatOsVersion({ productIdentifier: "iPhone16,1", build: "23F77" })).toEqual({
       displayValue: "iOS 26.5",
