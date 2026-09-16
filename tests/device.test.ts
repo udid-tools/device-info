@@ -10,6 +10,16 @@ describe("device resolution", () => {
     });
   });
 
+  it("resolves newly verified iPhone 18 Pro identifiers", () => {
+    expect(getDevice("iPhone19,2")).toEqual({
+      identifier: "iPhone19,2",
+      family: "iPhone",
+      model: "iPhone 18 Pro",
+    });
+    expect(getDeviceModelName("iPhone19,3")).toBe("iPhone 18 Pro Max");
+    expect(getDeviceModelName("iPhone19,7")).toBe("iPhone 18 Pro Max");
+  });
+
   it("returns structured information for a known iPad", () => {
     expect(getDevice("iPad16,6")).toEqual({
       identifier: "iPad16,6",

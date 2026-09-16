@@ -75,6 +75,8 @@ Accessed on 2026-09-16 for the verified OS-build additions in this repository up
 - `24A5424a` → `27.0 beta 7` — <https://raw.githubusercontent.com/littlebyteorg/appledb/main/osFiles/iOS/24x%20-%2027.x/24A5424a.json>
 - `24A5430a` → `27.0 beta 8` — <https://raw.githubusercontent.com/littlebyteorg/appledb/main/osFiles/iOS/24x%20-%2027.x/24A5430a.json>
 
-Reviewed on 2026-09-16 for the discovery-only device identifiers that were not added:
+Accessed on 2026-09-16 for the verified device additions in this repository update:
 
-- The accessible public iPhone device catalog exposed a different future-facing `iPhone19,*` set (`iPhone19,2`, `iPhone19,3`, `iPhone19,4`, and `iPhone19,7`) than the discovery report's hardware-string candidates (`iPhone19,1`, `iPhone19,2`, and `iPhone19,6`), so this pull request leaves device identifiers unchanged pending stronger public confirmation that safely reconciles the exact mappings: <https://github.com/littlebyteorg/appledb/tree/main/deviceFiles/iPhone>
+- `iPhone19,2` → `iPhone 18 Pro` — AppleDB: <https://api.appledb.dev/device/iPhone19%2C2.json>; IPSW.me: <https://api.ipsw.me/v4/device/iPhone19%2C2?type=ipsw>
+- `iPhone19,3` → `iPhone 18 Pro Max` — AppleDB: <https://api.appledb.dev/device/iPhone19%2C3.json>; IPSW.me: <https://api.ipsw.me/v4/device/iPhone19%2C3?type=ipsw>
+- `iPhone19,7` → `iPhone 18 Pro Max` — AppleDB: <https://api.appledb.dev/device/iPhone19%2C7.json>; IPSW.me: <https://api.ipsw.me/v4/device/iPhone19%2C7?type=ipsw>
