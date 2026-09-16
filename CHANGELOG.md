@@ -5,6 +5,8 @@ stable releases under npm's `latest` distribution tag.
 
 ## [Unreleased]
 
+## [1.0.3] - 2026-09-16
+
 ### Added
 
 - Verified and added `iPhone19,2` (`iPhone 18 Pro`) and `iPhone19,3`/`iPhone19,7`
@@ -63,7 +65,8 @@ stable releases under npm's `latest` distribution tag.
 - Offline catalog integrity tests, documentation, issue forms, and weekly catalog discovery.
 - Hardened CI, security scanning, supply-chain attestations, and dual-registry release automation.
 
-[unreleased]: https://github.com/udid-tools/device-info/compare/v1.0.2...HEAD
+[unreleased]: https://github.com/udid-tools/device-info/compare/v1.0.3...HEAD
+[1.0.3]: https://github.com/udid-tools/device-info/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/udid-tools/device-info/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/udid-tools/device-info/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/udid-tools/device-info/releases/tag/v1.0.0

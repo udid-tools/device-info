@@ -1,6 +1,6 @@
 {
   "name": "@udid-tools/device-info",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Framework-agnostic TypeScript catalog for resolving Apple device identifiers and operating system build numbers.",
   "keywords": [
     "apple-device",
