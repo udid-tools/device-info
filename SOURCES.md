@@ -69,4 +69,4 @@ Accessed on 2026-09-16 for the verified OS-build additions in this repository up
 
 Reviewed on 2026-09-16 for the discovery-only device identifiers that were not added:
 
-- AppleDB's public iPhone device catalog exposed `iPhone19,2`, `iPhone19,3`, `iPhone19,4`, and `iPhone19,7`, but it did not provide matching public confirmation for discovery candidates `iPhone19,1` or `iPhone19,6`, so those identifiers were left out of the committed catalog pending stronger evidence: <https://github.com/littlebyteorg/appledb/tree/main/deviceFiles/iPhone>
+- The accessible public iPhone device catalog exposed a different future-facing `iPhone19,*` set (`iPhone19,2`, `iPhone19,3`, `iPhone19,4`, and `iPhone19,7`) than the discovery report's hardware-string candidates (`iPhone19,1`, `iPhone19,2`, and `iPhone19,6`), so this pull request leaves device identifiers unchanged pending stronger public confirmation that safely reconciles the exact mappings: <https://github.com/littlebyteorg/appledb/tree/main/deviceFiles/iPhone>
