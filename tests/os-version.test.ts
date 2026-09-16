@@ -78,30 +78,117 @@ describe("OS version resolution", () => {
     });
   });
 
-  it("resolves newly verified stable, release-candidate, and iPadOS-only builds", () => {
-    expect(getOsVersion({ productIdentifier: "iPhone16,1", build: "22H374" })).toEqual({
-      known: true,
-      platform: "iOS",
-      version: "18.7.10",
-      build: "22H374",
-      releaseChannel: "stable",
-    });
-    expect(getOsVersion({ productIdentifier: "iPhone16,1", build: "24A435" })).toEqual({
-      known: true,
-      platform: "iOS",
-      version: "27.0",
-      build: "24A435",
-      releaseChannel: "release-candidate",
-      releaseLabel: "release candidate",
-    });
-    expect(getOsVersion({ productIdentifier: "iPad16,6", build: "24A5380l" })).toEqual({
-      known: true,
-      platform: "iPadOS",
-      version: "27.0",
-      build: "24A5380l",
-      releaseChannel: "beta",
-      releaseLabel: "beta 3",
-    });
+  it("resolves every newly verified September 2026 build addition", () => {
+    const additions = [
+      {
+        build: "22H373",
+        version: "18.7.10",
+        releaseChannel: "release-candidate" as const,
+        releaseLabel: "release candidate",
+      },
+      { build: "22H374", version: "18.7.10", releaseChannel: "stable" as const },
+      { build: "23G71", version: "26.6", releaseChannel: "stable" as const },
+      {
+        build: "23G82",
+        version: "26.6.1",
+        releaseChannel: "release-candidate" as const,
+        releaseLabel: "release candidate",
+      },
+      { build: "23G83", version: "26.6.1", releaseChannel: "stable" as const },
+      { build: "23G90", version: "26.6.2", releaseChannel: "stable" as const },
+      {
+        build: "23G5028e",
+        version: "26.6",
+        releaseChannel: "beta" as const,
+        releaseLabel: "beta 1",
+      },
+      {
+        build: "23G5043d",
+        version: "26.6",
+        releaseChannel: "beta" as const,
+        releaseLabel: "beta 2",
+      },
+      {
+        build: "23G5057c",
+        version: "26.6",
+        releaseChannel: "beta" as const,
+        releaseLabel: "beta 4",
+      },
+      {
+        build: "23G5065a",
+        version: "26.6",
+        releaseChannel: "beta" as const,
+        releaseLabel: "beta 5",
+      },
+      { build: "23H24", version: "26.7", releaseChannel: "stable" as const },
+      {
+        build: "24A435",
+        version: "27.0",
+        releaseChannel: "release-candidate" as const,
+        releaseLabel: "release candidate",
+      },
+      { build: "24A437", version: "27.0", releaseChannel: "stable" as const },
+      {
+        build: "24A5380h",
+        version: "27.0",
+        releaseChannel: "beta" as const,
+        releaseLabel: "beta 3",
+      },
+      {
+        build: "24A5380l",
+        version: "27.0",
+        platform: "iPadOS" as const,
+        productIdentifier: "iPad16,6",
+        releaseChannel: "beta" as const,
+        releaseLabel: "beta 3",
+      },
+      {
+        build: "24A5390f",
+        version: "27.0",
+        releaseChannel: "beta" as const,
+        releaseLabel: "beta 4",
+      },
+      {
+        build: "24A5408d",
+        version: "27.0",
+        releaseChannel: "beta" as const,
+        releaseLabel: "beta 5",
+      },
+      {
+        build: "24A5418b",
+        version: "27.0",
+        releaseChannel: "beta" as const,
+        releaseLabel: "beta 6",
+      },
+      {
+        build: "24A5424a",
+        version: "27.0",
+        releaseChannel: "beta" as const,
+        releaseLabel: "beta 7",
+      },
+      {
+        build: "24A5430a",
+        version: "27.0",
+        releaseChannel: "beta" as const,
+        releaseLabel: "beta 8",
+      },
+    ];
+
+    for (const addition of additions) {
+      expect(
+        getOsVersion({
+          productIdentifier: addition.productIdentifier ?? "iPhone16,1",
+          build: addition.build,
+        })
+      ).toEqual({
+        known: true,
+        platform: addition.platform ?? "iOS",
+        version: addition.version,
+        build: addition.build,
+        releaseChannel: addition.releaseChannel,
+        ...(addition.releaseLabel ? { releaseLabel: addition.releaseLabel } : {}),
+      });
+    }
   });
 
   it("formats known, unknown, empty, and already formatted input", () => {
