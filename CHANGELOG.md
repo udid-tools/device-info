@@ -5,6 +5,12 @@ stable releases under npm's `latest` distribution tag.
 
 ## [Unreleased]
 
+### Added
+
+- Verified and added iOS/iPadOS build mappings for the `24A427`, `24A8428`, `24B5084k`, and
+  `24B5089g` AppleDB firmware records, including iOS 27.0 hardware builds and iOS 27.2 beta
+  builds.
+
 ## [1.0.4] - 2026-09-21
 
 ### Changed

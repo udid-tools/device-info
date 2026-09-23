@@ -121,6 +121,7 @@ describe("OS version resolution", () => {
         releaseLabel: "beta 5",
       },
       { build: "23H24", version: "26.7", releaseChannel: "stable" as const },
+      { build: "24A427", version: "27.0", releaseChannel: "stable" as const },
       {
         build: "24A435",
         version: "27.0",
@@ -172,6 +173,19 @@ describe("OS version resolution", () => {
         releaseChannel: "beta" as const,
         releaseLabel: "beta 8",
       },
+      { build: "24A8428", version: "27.0", releaseChannel: "stable" as const },
+      {
+        build: "24B5084k",
+        version: "27.2",
+        releaseChannel: "beta" as const,
+        releaseLabel: "beta 1",
+      },
+      {
+        build: "24B5089g",
+        version: "27.2",
+        releaseChannel: "beta" as const,
+        releaseLabel: "beta 2",
+      },
     ];
 
     for (const addition of additions) {
@@ -202,17 +216,35 @@ describe("OS version resolution", () => {
       },
       { build: "23G83", version: "26.6.1", releaseChannel: "stable" as const },
       {
+        build: "24A427",
+        version: "27.0",
+        releaseChannel: "stable" as const,
+      },
+      {
         build: "24A435",
         version: "27.0",
         releaseChannel: "release-candidate" as const,
         releaseLabel: "release candidate",
       },
       { build: "24A437", version: "27.0", releaseChannel: "stable" as const },
+      { build: "24A8428", version: "27.0", releaseChannel: "stable" as const },
       {
         build: "24A5430a",
         version: "27.0",
         releaseChannel: "beta" as const,
         releaseLabel: "beta 8",
+      },
+      {
+        build: "24B5084k",
+        version: "27.2",
+        releaseChannel: "beta" as const,
+        releaseLabel: "beta 1",
+      },
+      {
+        build: "24B5089g",
+        version: "27.2",
+        releaseChannel: "beta" as const,
+        releaseLabel: "beta 2",
       },
     ]) {
       expect(getOsVersion({ productIdentifier: "iPad16,6", build: addition.build })).toEqual({
