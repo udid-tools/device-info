@@ -401,6 +401,7 @@ export const OS_BUILD_VERSIONS: Readonly<Record<string, string>> = {
   "23G5057c": "26.6 beta 4",
   "23G5065a": "26.6 beta 5",
   "23H24": "26.7",
+  "24A427": "27.0",
   "24A435": "27.0 release candidate",
   "24A437": "27.0",
   "24A5355q": "27.0 beta 1",
@@ -412,4 +413,7 @@ export const OS_BUILD_VERSIONS: Readonly<Record<string, string>> = {
   "24A5418b": "27.0 beta 6",
   "24A5424a": "27.0 beta 7",
   "24A5430a": "27.0 beta 8",
+  "24A8428": "27.0",
+  "24B5084k": "27.2 beta 1",
+  "24B5089g": "27.2 beta 2",
 };
