@@ -5,6 +5,8 @@ stable releases under npm's `latest` distribution tag.
 
 ## [Unreleased]
 
+## [1.0.5] - 2026-09-23
+
 ### Added
 
 - Verified and added iOS/iPadOS build mappings for the `24A427`, `24A8428`, `24B5084k`, and
@@ -87,7 +89,8 @@ stable releases under npm's `latest` distribution tag.
 - Offline catalog integrity tests, documentation, issue forms, and weekly catalog discovery.
 - Hardened CI, security scanning, supply-chain attestations, and dual-registry release automation.
 
-[unreleased]: https://github.com/udid-tools/device-info/compare/v1.0.4...HEAD
+[unreleased]: https://github.com/udid-tools/device-info/compare/v1.0.5...HEAD
+[1.0.5]: https://github.com/udid-tools/device-info/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/udid-tools/device-info/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/udid-tools/device-info/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/udid-tools/device-info/compare/v1.0.1...v1.0.2
