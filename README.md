@@ -5,6 +5,7 @@
 [![Security](https://github.com/udid-tools/device-info/actions/workflows/security.yml/badge.svg?branch=main)](https://github.com/udid-tools/device-info/actions/workflows/security.yml)
 [![Coverage](https://codecov.io/gh/udid-tools/device-info/branch/main/graph/badge.svg)](https://codecov.io/gh/udid-tools/device-info)
 [![Deployment](https://img.shields.io/github/actions/workflow/status/udid-tools/device-info/pages.yml?branch=main&label=deployment)](https://github.com/udid-tools/device-info/actions/workflows/pages.yml)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/14768/badge)](https://www.bestpractices.dev/projects/14768)
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/udid-tools/device-info/badge)](https://scorecard.dev/viewer/?uri=github.com/udid-tools/device-info)
 [![License: MIT](https://img.shields.io/github/license/udid-tools/device-info)](./LICENSE)
 
