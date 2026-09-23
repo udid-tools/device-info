@@ -5,6 +5,12 @@ stable releases under npm's `latest` distribution tag.
 
 ## [Unreleased]
 
+### Security
+
+- Added property-based fuzz tests for the public device and OS lookup and formatting APIs,
+  including arbitrary Unicode, malformed values, and long untrusted strings.
+- Earned and documented the OpenSSF Best Practices passing badge.
+
 ## [1.0.5] - 2026-09-23
 
 ### Added

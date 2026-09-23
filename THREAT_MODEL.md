@@ -12,12 +12,15 @@
 - Discovery HTML changes create false candidates.
 - Automation expands scope, changes APIs, merges, or publishes without owner review.
 - A compromised dependency, Action, maintainer account, or registry credential alters artifacts.
+- Malformed, unusual Unicode, or excessively long caller input causes exceptions or corrupt output.
 - A caller mistakes an unknown value for a confirmed model/version.
 
 ## Controls
 
 - Runtime has no dependencies or network access.
 - Unknown results are explicit and lossless.
+- Example-based and property-based tests exercise known, unknown, malformed, Unicode, and long
+  inputs on every pull request.
 - Discovery is separate from committed data and never runs during build or import.
 - Sources, integrity tests, CODEOWNERS, protected branches/tags, and owner review gate changes.
 - Actions are SHA-pinned; releases use checksums, SBOMs, attestations, OIDC, and one tarball for both
