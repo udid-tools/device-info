@@ -11,6 +11,11 @@ stable releases under npm's `latest` distribution tag.
   `24B5089g` AppleDB firmware records, including iOS 27.0 hardware builds and iOS 27.2 beta
   builds.
 
+### Security
+
+- Pinned the clean-consumer smoke-test dependency tree with a dedicated lockfile and `npm ci`
+  in both CI and the release workflow.
+
 ## [1.0.4] - 2026-09-21
 
 ### Changed

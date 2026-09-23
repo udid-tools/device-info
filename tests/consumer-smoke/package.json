@@ -1,0 +1,9 @@
+{
+  "name": "@udid-tools/device-info-consumer-smoke",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@udid-tools/device-info": "file:udid-tools-device-info.tgz"
+  }
+}
