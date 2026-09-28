@@ -15,7 +15,7 @@ hardware product identifiers and operating system build numbers for use with App
 It is ESM-only, works in browsers and Node.js, performs no network requests at runtime, and has
 no runtime dependencies.
 
-The current stable release is `1.0.5`.
+The current stable release is `1.0.6`.
 
 ## Installation
 
