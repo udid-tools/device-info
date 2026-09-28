@@ -5,11 +5,21 @@ stable releases under npm's `latest` distribution tag.
 
 ## [Unreleased]
 
+## [1.0.6] - 2026-09-28
+
+### Changed
+
+- Refreshed the verified development toolchain and GitHub Actions dependencies. The runtime API
+  and device/OS catalog are unchanged from `1.0.5`.
+
 ### Security
 
 - Added property-based fuzz tests for the public device and OS lookup and formatting APIs,
   including arbitrary Unicode, malformed values, and long untrusted strings.
 - Earned and documented the OpenSSF Best Practices passing badge.
+- Refreshed the temporary packed-consumer lockfile from the exact release tarball and the
+  repository's locked runtime dependency tree before its offline `npm ci` smoke test.
+- Published the portable provenance bundle with the release assets.
 
 ## [1.0.5] - 2026-09-23
 
@@ -95,7 +105,8 @@ stable releases under npm's `latest` distribution tag.
 - Offline catalog integrity tests, documentation, issue forms, and weekly catalog discovery.
 - Hardened CI, security scanning, supply-chain attestations, and dual-registry release automation.
 
-[unreleased]: https://github.com/udid-tools/device-info/compare/v1.0.5...HEAD
+[unreleased]: https://github.com/udid-tools/device-info/compare/v1.0.6...HEAD
+[1.0.6]: https://github.com/udid-tools/device-info/compare/v1.0.5...v1.0.6
 [1.0.5]: https://github.com/udid-tools/device-info/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/udid-tools/device-info/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/udid-tools/device-info/compare/v1.0.2...v1.0.3
