@@ -5,6 +5,10 @@ stable releases under npm's `latest` distribution tag.
 
 ## [Unreleased]
 
+### Added
+
+- Added the verified iOS 26.7.1 build mapping `23H30`.
+
 ## [1.0.6] - 2026-09-28
 
 ### Changed

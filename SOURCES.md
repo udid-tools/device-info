@@ -89,3 +89,9 @@ Accessed on 2026-09-23 for the verified OS-build additions in this repository up
 - `24A8428` → `27.0` — <https://raw.githubusercontent.com/littlebyteorg/appledb/main/osFiles/iOS/24x%20-%2027.x/24A8428.json>
 - `24B5084k` → `27.2 beta 1` — <https://raw.githubusercontent.com/littlebyteorg/appledb/main/osFiles/iOS/24x%20-%2027.x/24B5084k.json>
 - `24B5089g` → `27.2 beta 2` — <https://raw.githubusercontent.com/littlebyteorg/appledb/main/osFiles/iOS/24x%20-%2027.x/24B5089g.json>
+
+## 2026-09-30 catalog update evidence
+
+Accessed on 2026-09-30 for the verified OS-build additions in this repository update:
+
+- `23H30` → `26.7.1` — <https://raw.githubusercontent.com/littlebyteorg/appledb/main/osFiles/iOS/23x%20-%2026.x/23H30.json>
