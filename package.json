@@ -54,6 +54,9 @@
     "access": "public",
     "provenance": true
   },
+  "overrides": {
+    "postcss-nested": "8.0.1"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
