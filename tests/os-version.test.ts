@@ -121,6 +121,7 @@ describe("OS version resolution", () => {
         releaseLabel: "beta 5",
       },
       { build: "23H24", version: "26.7", releaseChannel: "stable" as const },
+      { build: "23H30", version: "26.7.1", releaseChannel: "stable" as const },
       { build: "24A427", version: "27.0", releaseChannel: "stable" as const },
       {
         build: "24A435",
