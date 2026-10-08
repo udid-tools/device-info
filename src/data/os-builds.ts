@@ -401,6 +401,7 @@ export const OS_BUILD_VERSIONS: Readonly<Record<string, string>> = {
   "23G5057c": "26.6 beta 4",
   "23G5065a": "26.6 beta 5",
   "23H24": "26.7",
+  "23H30": "26.7.1",
   "24A427": "27.0",
   "24A435": "27.0 release candidate",
   "24A437": "27.0",
