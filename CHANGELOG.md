@@ -5,10 +5,22 @@ stable releases under npm's `latest` distribution tag.
 
 ## [Unreleased]
 
+## [1.0.7] - 2026-10-08
+
 ### Added
 
 - Added the verified iOS 26.7.1 build mapping `23H30`.
 - Added the verified iOS 27.2 beta 3 build mapping `24B5099f`.
+
+### Changed
+
+- Refreshed the verified documentation and development toolchain. The runtime API remains
+  unchanged from `1.0.6`.
+
+### Security
+
+- Updated vulnerable transitive documentation dependencies to patched releases and pinned
+  `postcss-nested` to 8.0.1.
 
 ## [1.0.6] - 2026-09-28
 
@@ -110,7 +122,8 @@ stable releases under npm's `latest` distribution tag.
 - Offline catalog integrity tests, documentation, issue forms, and weekly catalog discovery.
 - Hardened CI, security scanning, supply-chain attestations, and dual-registry release automation.
 
-[unreleased]: https://github.com/udid-tools/device-info/compare/v1.0.6...HEAD
+[unreleased]: https://github.com/udid-tools/device-info/compare/v1.0.7...HEAD
+[1.0.7]: https://github.com/udid-tools/device-info/compare/v1.0.6...v1.0.7
 [1.0.6]: https://github.com/udid-tools/device-info/compare/v1.0.5...v1.0.6
 [1.0.5]: https://github.com/udid-tools/device-info/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/udid-tools/device-info/compare/v1.0.3...v1.0.4
