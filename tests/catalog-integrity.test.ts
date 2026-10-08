@@ -31,4 +31,10 @@ describe("catalog integrity", () => {
       if (resolved.known) expect(resolved.build).toBe(build);
     }
   });
+
+  it("contains the verified recent iOS build mapping", () => {
+    expect(OS_BUILD_VERSIONS).toMatchObject({
+      "24B5099f": "27.2 beta 3",
+    });
+  });
 });
