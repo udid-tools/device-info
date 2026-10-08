@@ -95,3 +95,9 @@ Accessed on 2026-09-23 for the verified OS-build additions in this repository up
 Accessed on 2026-09-30 for the verified OS-build additions in this repository update:
 
 - `23H30` → `26.7.1` — <https://raw.githubusercontent.com/littlebyteorg/appledb/main/osFiles/iOS/23x%20-%2026.x/23H30.json>
+
+## 2026-10-08 catalog update evidence
+
+Accessed on 2026-10-08 for the verified OS-build addition in this repository update:
+
+- `24B5099f` → `27.2 beta 3` — AppleDB: <https://raw.githubusercontent.com/littlebyteorg/appledb/main/osFiles/iOS/24x%20-%2027.x/24B5099f.json>; Apple Developer releases: <https://developer.apple.com/news/releases/?id=10052026a>
