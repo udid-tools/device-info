@@ -35,6 +35,7 @@ describe("catalog integrity", () => {
   it("contains the verified recent iOS build mapping", () => {
     expect(OS_BUILD_VERSIONS).toMatchObject({
       "24B5099f": "27.2 beta 3",
+      "24B5110a": "27.2 beta 4",
     });
   });
 });
