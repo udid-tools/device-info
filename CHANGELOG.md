@@ -5,6 +5,8 @@ stable releases under npm's `latest` distribution tag.
 
 ## [Unreleased]
 
+## [1.0.8] - 2026-10-17
+
 ### Added
 
 - Added the verified iOS 27.2 beta 4 build mapping `24B5110a`.
@@ -126,7 +128,8 @@ stable releases under npm's `latest` distribution tag.
 - Offline catalog integrity tests, documentation, issue forms, and weekly catalog discovery.
 - Hardened CI, security scanning, supply-chain attestations, and dual-registry release automation.
 
-[unreleased]: https://github.com/udid-tools/device-info/compare/v1.0.7...HEAD
+[unreleased]: https://github.com/udid-tools/device-info/compare/v1.0.8...HEAD
+[1.0.8]: https://github.com/udid-tools/device-info/compare/v1.0.7...v1.0.8
 [1.0.7]: https://github.com/udid-tools/device-info/compare/v1.0.6...v1.0.7
 [1.0.6]: https://github.com/udid-tools/device-info/compare/v1.0.5...v1.0.6
 [1.0.5]: https://github.com/udid-tools/device-info/compare/v1.0.4...v1.0.5
