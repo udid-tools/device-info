@@ -421,5 +421,4 @@ export const OS_BUILD_VERSIONS: Readonly<Record<string, string>> = {
   "24B5099f": "27.2 beta 3",
   "24B5110a": "27.2 beta 4",
   "24B115": "27.2 release candidate",
-  "24B91016": "27.2 release candidate",
 };

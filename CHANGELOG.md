@@ -8,7 +8,7 @@ stable releases under npm's `latest` distribution tag.
 ### Added
 
 - Added the verified iOS 26.7.2 release-candidate build `23H127` and iOS 27.2 release-candidate
-  builds `24B115` and `24B91016`.
+  build `24B115`.
 
 ## [1.0.8] - 2026-10-17
 
