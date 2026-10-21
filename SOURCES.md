@@ -107,3 +107,11 @@ Accessed on 2026-10-08 for the verified OS-build addition in this repository upd
 Accessed on 2026-10-14 for the verified OS-build addition in this repository update:
 
 - `24B5110a` → `27.2 beta 4` — AppleDB firmware record: <https://appledb.dev/firmware/iOS/24B5110a>; AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/main/osFiles/iOS/24x%20-%2027.x/24B5110a.json>; Apple Developer releases: <https://developer.apple.com/news/releases/?id=10132026a>
+
+## 2026-10-21 catalog update evidence
+
+Accessed on 2026-10-21 for the verified OS-build additions in this repository update:
+
+- `23H127` → `26.7.2 release candidate` — AppleDB firmware record: <https://appledb.dev/firmware/iOS/23H127>; AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/main/osFiles/iOS/23x%20-%2026.x/23H127.json>
+- `24B115` → `27.2 release candidate` — AppleDB firmware record: <https://appledb.dev/firmware/iOS/24B115>; AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/main/osFiles/iOS/24x%20-%2027.x/24B115.json>
+- `24B91016` → `27.2 release candidate` — AppleDB firmware record: <https://appledb.dev/firmware/iOS/24B91016>; AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/main/osFiles/iOS/24x%20-%2027.x/24B91016.json>
