@@ -82,7 +82,7 @@
     "@astrojs/starlight": "0.42.6",
     "@eslint/js": "10.0.1",
     "@types/node": "22.20.5",
-    "@vitest/coverage-v8": "4.1.11",
+    "@vitest/coverage-v8": "4.1.12",
     "astro": "7.3.8",
     "cross-env": "10.1.0",
     "eslint": "10.12.0",
@@ -94,6 +94,6 @@
     "typedoc-plugin-markdown": "4.13.1",
     "typescript": "6.0.3",
     "typescript-eslint": "8.71.1",
-    "vitest": "4.1.11"
+    "vitest": "4.1.12"
   }
 }
