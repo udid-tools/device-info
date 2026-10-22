@@ -36,6 +36,8 @@ describe("catalog integrity", () => {
     expect(OS_BUILD_VERSIONS).toMatchObject({
       "24B5099f": "27.2 beta 3",
       "24B5110a": "27.2 beta 4",
+      "23H127": "26.7.2 release candidate",
+      "24B115": "27.2 release candidate",
     });
   });
 });
