@@ -17,34 +17,34 @@ Each GitHub Release contains:
 The workflow also records a GitHub artifact attestation for the tarball. npm Trusted Publishing
 adds registry provenance without a long-lived npm token.
 
-## Verify version 1.0.8
+## Verify version 1.0.9
 
 Download the immutable release assets:
 
 ```bash
-gh release download v1.0.8 --repo udid-tools/device-info --dir device-info-release
+gh release download v1.0.9 --repo udid-tools/device-info --dir device-info-release
 cd device-info-release
 ```
 
 Verify the tarball checksum on Linux:
 
 ```bash
-sha256sum --check udid-tools-device-info-1.0.8.tgz.sha256
+sha256sum --check udid-tools-device-info-1.0.9.tgz.sha256
 ```
 
 On macOS, use the compatible checksum command:
 
 ```bash
-shasum --algorithm 256 --check udid-tools-device-info-1.0.8.tgz.sha256
+shasum --algorithm 256 --check udid-tools-device-info-1.0.9.tgz.sha256
 ```
 
 Verify the tarball's keyless Sigstore signature, certificate identity, and transparency-log proof:
 
 ```bash
-cosign verify-blob udid-tools-device-info-1.0.8.tgz \
-  --bundle udid-tools-device-info-1.0.8.tgz.sigstore.json \
+cosign verify-blob udid-tools-device-info-1.0.9.tgz \
+  --bundle udid-tools-device-info-1.0.9.tgz.sigstore.json \
   --certificate-identity \
-  "https://github.com/udid-tools/device-info/.github/workflows/release.yml@refs/tags/v1.0.8" \
+  "https://github.com/udid-tools/device-info/.github/workflows/release.yml@refs/tags/v1.0.9" \
   --certificate-oidc-issuer "https://token.actions.githubusercontent.com"
 ```
 
@@ -52,7 +52,7 @@ Repeat `cosign verify-blob` with each SBOM or checksum file and its adjacent bun
 those assets directly. Verify the GitHub artifact attestation independently:
 
 ```bash
-gh attestation verify udid-tools-device-info-1.0.8.tgz \
+gh attestation verify udid-tools-device-info-1.0.9.tgz \
   --repo udid-tools/device-info
 ```
 
