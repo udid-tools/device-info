@@ -5,10 +5,21 @@ stable releases under npm's `latest` distribution tag.
 
 ## [Unreleased]
 
+## [1.0.9] - 2026-10-22
+
 ### Added
 
 - Added the verified iOS 26.7.2 release-candidate build `23H127` and iOS 27.2 release-candidate
   build `24B115`.
+
+### Changed
+
+- Refreshed the verified test and GitHub Actions toolchain. The runtime API remains unchanged
+  from `1.0.8`.
+
+### Security
+
+- Updated vulnerable transitive development dependencies to patched releases.
 
 ## [1.0.8] - 2026-10-17
 
@@ -133,7 +144,8 @@ stable releases under npm's `latest` distribution tag.
 - Offline catalog integrity tests, documentation, issue forms, and weekly catalog discovery.
 - Hardened CI, security scanning, supply-chain attestations, and dual-registry release automation.
 
-[unreleased]: https://github.com/udid-tools/device-info/compare/v1.0.8...HEAD
+[unreleased]: https://github.com/udid-tools/device-info/compare/v1.0.9...HEAD
+[1.0.9]: https://github.com/udid-tools/device-info/compare/v1.0.8...v1.0.9
 [1.0.8]: https://github.com/udid-tools/device-info/compare/v1.0.7...v1.0.8
 [1.0.7]: https://github.com/udid-tools/device-info/compare/v1.0.6...v1.0.7
 [1.0.6]: https://github.com/udid-tools/device-info/compare/v1.0.5...v1.0.6
