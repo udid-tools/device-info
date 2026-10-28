@@ -7,6 +7,7 @@ stable releases under npm's `latest` distribution tag.
 
 ### Added
 
+- Added the verified iPhone identifier `iPhone19,4` for iPhone Duo.
 - Added verified iOS and iPadOS build mappings for `22H384`, `23H128`, `24B119`,
   `24B120`, `24B8120`, `24B91016`, and `24B91020`.
 

@@ -117,7 +117,9 @@ Accessed on 2026-10-21 for the verified OS-build additions in this repository up
 
 ## 2026-10-28 catalog update evidence
 
-Accessed on 2026-10-28 for the verified OS-build additions in this repository update:
+Accessed on 2026-10-28 for the verified device and OS-build additions in this repository update:
+
+- `iPhone19,4` → `iPhone Duo` — AppleDB: <https://api.appledb.dev/device/iPhone19%2C4.json>; IPSW.me: <https://api.ipsw.me/v4/device/iPhone19%2C4?type=ipsw>
 
 - `22H384` → `18.7.11` — AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/f13234751bb0b03a94d6f44e5e88463ca8cd8537/osFiles/iOS/22x%20-%2018.x/22H384.json>
 - `23H128` → `26.7.2` — AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/f13234751bb0b03a94d6f44e5e88463ca8cd8537/osFiles/iOS/23x%20-%2026.x/23H128.json>
