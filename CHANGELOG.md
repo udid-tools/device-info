@@ -5,6 +5,11 @@ stable releases under npm's `latest` distribution tag.
 
 ## [Unreleased]
 
+### Added
+
+- Added verified iOS and iPadOS build mappings for `22H384`, `23H128`, `24B119`,
+  `24B120`, `24B8120`, `24B91016`, and `24B91020`.
+
 ### Fixed
 
 - Run documentation and verification tooling on the pinned Node.js 24.19.0 and npm 11.19.0
