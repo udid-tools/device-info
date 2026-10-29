@@ -11,9 +11,13 @@ Thank you for improving UDID Tools Device Info.
 
 ## Development
 
-Use the Node and npm versions declared by `.nvmrc` and `package.json`:
+Use Node.js 24.19.0 from `.nvmrc` and npm 11.19.0 from `package.json` for development and
+documentation tooling. The published package continues to support Node.js 22.14.0 and newer;
+CI tests that runtime minimum separately:
 
 ```bash
+nvm use
+npm install --global npm@11.19.0 --ignore-scripts --no-audit --no-fund
 npm ci --ignore-scripts --no-audit --no-fund
 npm run verify
 ```
