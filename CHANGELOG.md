@@ -5,6 +5,8 @@ stable releases under npm's `latest` distribution tag.
 
 ## [Unreleased]
 
+## [1.0.10] - 2026-10-29
+
 ### Added
 
 - Added the verified iPhone identifier `iPhone19,4` for iPhone Duo.
@@ -156,7 +158,8 @@ stable releases under npm's `latest` distribution tag.
 - Offline catalog integrity tests, documentation, issue forms, and weekly catalog discovery.
 - Hardened CI, security scanning, supply-chain attestations, and dual-registry release automation.
 
-[unreleased]: https://github.com/udid-tools/device-info/compare/v1.0.9...HEAD
+[unreleased]: https://github.com/udid-tools/device-info/compare/v1.0.10...HEAD
+[1.0.10]: https://github.com/udid-tools/device-info/compare/v1.0.9...v1.0.10
 [1.0.9]: https://github.com/udid-tools/device-info/compare/v1.0.8...v1.0.9
 [1.0.8]: https://github.com/udid-tools/device-info/compare/v1.0.7...v1.0.8
 [1.0.7]: https://github.com/udid-tools/device-info/compare/v1.0.6...v1.0.7
