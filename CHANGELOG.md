@@ -5,6 +5,12 @@ stable releases under npm's `latest` distribution tag.
 
 ## [Unreleased]
 
+### Fixed
+
+- Run documentation and verification tooling on the pinned Node.js 24.19.0 and npm 11.19.0
+  toolchain while preserving the package runtime minimum of Node.js 22.14.0.
+- Update locked development dependencies and pinned CodeQL actions to restore security checks.
+
 ## [1.0.9] - 2026-10-22
 
 ### Added
