@@ -20,6 +20,14 @@ describe("device resolution", () => {
     expect(getDeviceModelName("iPhone19,7")).toBe("iPhone 18 Pro Max");
   });
 
+  it("resolves the verified iPhone Duo identifier", () => {
+    expect(getDevice("iPhone19,4")).toEqual({
+      identifier: "iPhone19,4",
+      family: "iPhone",
+      model: "iPhone Duo",
+    });
+  });
+
   it("returns structured information for a known iPad", () => {
     expect(getDevice("iPad16,6")).toEqual({
       identifier: "iPad16,6",
