@@ -8,6 +8,7 @@
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/14768/badge)](https://www.bestpractices.dev/projects/14768)
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/udid-tools/device-info/badge)](https://scorecard.dev/viewer/?uri=github.com/udid-tools/device-info)
 [![License: MIT](https://img.shields.io/github/license/udid-tools/device-info)](./LICENSE)
+[![Accessibility: policy](https://img.shields.io/badge/Accessibility-policy-blue)](https://github.com/udid-tools/device-info/blob/main/ACCESSIBILITY.md)
 
 `@udid-tools/device-info` is a small, framework-agnostic TypeScript catalog for resolving
 hardware product identifiers and operating system build numbers for use with Apple devices.
@@ -119,6 +120,12 @@ attestation before installation.
 
 Complete documentation lives in the repository's [`docs`](./docs) directory and is verified on
 every change.
+
+## Accessibility
+
+Read our [accessibility policy](https://github.com/udid-tools/device-info/blob/main/ACCESSIBILITY.md) for the scope, known limitations,
+ways to report a barrier, and contributor checks. The policy badge is a link to
+that information, not a conformance certification.
 
 ## License
 

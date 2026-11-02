@@ -2,6 +2,10 @@
 
 Thank you for improving UDID Tools Device Info.
 
+Read the [accessibility policy](./ACCESSIBILITY.md) before changing documentation,
+examples, or user-facing behavior. Report barriers through its feedback channels
+and include the relevant accessibility checks and remaining limitations in your PR.
+
 ## Before opening a change
 
 - Search existing issues and the committed catalog.
