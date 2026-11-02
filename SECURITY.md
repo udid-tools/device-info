@@ -14,11 +14,11 @@ Report suspected vulnerabilities privately through
 Do not open a public issue containing exploit details, tokens, private device identifiers, or
 confidential data.
 
-Maintainers will acknowledge a vulnerability report within 14 days and coordinate assessment,
-fixes, and disclosure privately. Confirmed critical issues are prioritized immediately. Publicly
-known vulnerabilities of medium or higher severity are fixed and released within 60 days. When a
-fix is published, the GitHub Security Advisory and release notes identify the affected and fixed
-versions and credit the reporter when they consent.
+We aim to acknowledge a complete report within three business days and provide an initial triage
+within seven business days. These are best-effort targets, not guarantees. For publicly known
+medium-severity or higher vulnerabilities with an available fix, we aim to remediate within 60 days.
+When a fix is published, the GitHub Security Advisory and release notes identify the affected and
+fixed versions and credit the reporter when they consent.
 
 ## Security verification
 

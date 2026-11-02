@@ -47,7 +47,7 @@ jobs:
           retention-days: 14
 
   upload-high-severity:
-    name: Upload high-severity findings
+    name: Upload findings
     needs:
       - scorecard
     runs-on: ubuntu-latest
@@ -63,23 +63,7 @@ jobs:
         with:
           name: scorecard-results
 
-      - name: Keep high-severity findings for code scanning
-        shell: bash
-        run: |
-          set -euo pipefail
-          jq '
-            .runs |= map(
-              . as $run
-              | ($run.tool.driver.rules
-                | map(select((.properties["security-severity"] | tonumber) >= 7) | .id)
-              ) as $high_rule_ids
-              | .results |= map(
-                  select(.ruleId as $rule_id | $high_rule_ids | index($rule_id))
-                )
-            )
-          ' results.sarif > high-severity-results.sarif
-
-      - name: Upload high-severity results to code scanning
+      - name: Upload results to code scanning
         uses: github/codeql-action/upload-sarif@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4.39.1
         with:
-          sarif_file: high-severity-results.sarif
+          sarif_file: results.sarif
