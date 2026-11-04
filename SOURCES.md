@@ -128,3 +128,9 @@ Accessed on 2026-10-28 for the verified device and OS-build additions in this re
 - `24B8120` → `27.2` — AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/f13234751bb0b03a94d6f44e5e88463ca8cd8537/osFiles/iPadOS/24x%20-%2027.x/24B8120.json>
 - `24B91016` → `27.2 release candidate` — AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/f13234751bb0b03a94d6f44e5e88463ca8cd8537/osFiles/iOS/24x%20-%2027.x/24B91016.json>
 - `24B91020` → `27.2` — AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/f13234751bb0b03a94d6f44e5e88463ca8cd8537/osFiles/iOS/24x%20-%2027.x/24B91020.json>
+
+## 2026-11-04 catalog update evidence
+
+Accessed on 2026-11-04 for the verified OS-build addition in this repository update:
+
+- `24C5037i` → `27.3 beta 1` — AppleDB firmware record: <https://appledb.dev/firmware/iOS/24C5037i>; AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/e84c08a25ac738d38fa6966aac2cf8156cf286d9/osFiles/iOS/24x%20-%2027.x/24C5037i.json>; Apple Developer release: <https://developer.apple.com/news/releases/?id=11032026a>
