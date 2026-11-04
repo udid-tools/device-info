@@ -45,6 +45,7 @@ describe("catalog integrity", () => {
       "24B8120": "27.2",
       "24B91016": "27.2 release candidate",
       "24B91020": "27.2",
+      "24C5037i": "27.3 beta 1",
     });
   });
 });
