@@ -4,6 +4,13 @@ import { OS_BUILD_VERSIONS } from "../src/data/os-builds.js";
 import { getDevice, getOsVersion } from "../src/index.js";
 
 describe("catalog integrity", () => {
+  it("contains the verified recent iPad identifiers", () => {
+    expect(DEVICE_MODELS).toMatchObject({
+      "iPad19,1": "iPad mini (A20 Pro)",
+      "iPad19,2": "iPad mini (A20 Pro)",
+    });
+  });
+
   it("contains a meaningful historical device catalog", () => {
     const entries = Object.entries(DEVICE_MODELS);
     expect(entries.length).toBeGreaterThan(150);
@@ -45,6 +52,12 @@ describe("catalog integrity", () => {
       "24B8120": "27.2",
       "24B91016": "27.2 release candidate",
       "24B91020": "27.2",
+      "22H390": "18.7.12",
+      "23H131": "26.7.3",
+      "24B156": "27.2.1",
+      "24B8156": "27.2.1",
+      "24B91034": "27.2.1",
+      "24C5037i": "27.3 beta 1",
     });
   });
 });
