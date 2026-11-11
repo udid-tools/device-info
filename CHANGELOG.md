@@ -7,7 +7,6 @@ stable releases under npm's `latest` distribution tag.
 
 ### Added
 
-- Added the verified iPad identifiers `iPad19,1` and `iPad19,2` for iPad mini (A20 Pro).
 - Added `22H390` → `18.7.12`, `23H131` → `26.7.3`, `24B156`/`24B8156`/`24B91034` → `27.2.1`,
   and `24C5037i` → `27.3 beta 1`.
 

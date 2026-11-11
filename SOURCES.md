@@ -131,11 +131,7 @@ Accessed on 2026-10-28 for the verified device and OS-build additions in this re
 
 ## 2026-11-11 catalog update evidence
 
-Accessed on 2026-11-11 for the verified device and OS-build additions in this repository update:
-
-- `iPad19,1` → `iPad mini (A20 Pro)` — AppleDB device record: <https://raw.githubusercontent.com/littlebyteorg/appledb/4f64af21343cd8a87bae8ae3ac9c83e035961386/deviceFiles/iPad/iPad19%2C1.json>; IPSW.me: <https://api.ipsw.me/v4/device/iPad19%2C1?type=ipsw>
-- `iPad19,2` → `iPad mini (A20 Pro)` — AppleDB device record: <https://raw.githubusercontent.com/littlebyteorg/appledb/4f64af21343cd8a87bae8ae3ac9c83e035961386/deviceFiles/iPad/iPad19%2C2.json>; IPSW.me: <https://api.ipsw.me/v4/device/iPad19%2C2?type=ipsw>
-- Apple product announcement for iPad mini (A20 Pro): <https://www.apple.com/newsroom/2026/10/apple-gives-ipad-mini-its-biggest-update-ever/>
+Accessed on 2026-11-11 for the verified OS-build additions in this repository update:
 
 - `22H390` → `18.7.12` — AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/4f64af21343cd8a87bae8ae3ac9c83e035961386/osFiles/iOS/22x%20-%2018.x/22H390.json>; Apple release notes: <https://support.apple.com/121161#a18712>
 - `23H131` → `26.7.3` — AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/4f64af21343cd8a87bae8ae3ac9c83e035961386/osFiles/iOS/23x%20-%2026.x/23H131.json>; Apple release notes: <https://support.apple.com/123075#a2673>

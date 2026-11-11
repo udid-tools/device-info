@@ -4,13 +4,6 @@ import { OS_BUILD_VERSIONS } from "../src/data/os-builds.js";
 import { getDevice, getOsVersion } from "../src/index.js";
 
 describe("catalog integrity", () => {
-  it("contains the verified recent iPad identifiers", () => {
-    expect(DEVICE_MODELS).toMatchObject({
-      "iPad19,1": "iPad mini (A20 Pro)",
-      "iPad19,2": "iPad mini (A20 Pro)",
-    });
-  });
-
   it("contains a meaningful historical device catalog", () => {
     const entries = Object.entries(DEVICE_MODELS);
     expect(entries.length).toBeGreaterThan(150);
