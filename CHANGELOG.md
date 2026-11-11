@@ -5,6 +5,11 @@ stable releases under npm's `latest` distribution tag.
 
 ## [Unreleased]
 
+### Added
+
+- Added `22H390` → `18.7.12`, `23H131` → `26.7.3`, `24B156`/`24B8156`/`24B91034` → `27.2.1`,
+  and `24C5037i` → `27.3 beta 1`.
+
 ## [1.0.10] - 2026-10-29
 
 ### Added
