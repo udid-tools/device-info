@@ -16,6 +16,13 @@ describe("catalog integrity", () => {
     }
   });
 
+  it("contains the verified iPad mini (A20 Pro) identifiers", () => {
+    expect(DEVICE_MODELS).toMatchObject({
+      "iPad19,1": "iPad mini (A20 Pro)",
+      "iPad19,2": "iPad mini (A20 Pro)",
+    });
+  });
+
   it("contains valid and resolvable historical OS builds", () => {
     const entries = Object.entries(OS_BUILD_VERSIONS);
     expect(entries.length).toBeGreaterThan(350);
@@ -46,6 +53,9 @@ describe("catalog integrity", () => {
       "24B91016": "27.2 release candidate",
       "24B91020": "27.2",
       "24C5037i": "27.3 beta 1",
+      "22H390": "18.7.12",
+      "23H131": "26.7.3",
+      "24C5049d": "27.3 beta 2",
     });
   });
 });

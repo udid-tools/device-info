@@ -134,3 +134,13 @@ Accessed on 2026-10-28 for the verified device and OS-build additions in this re
 Accessed on 2026-11-04 for the verified OS-build addition in this repository update:
 
 - `24C5037i` → `27.3 beta 1` — AppleDB firmware record: <https://appledb.dev/firmware/iOS/24C5037i>; AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/e84c08a25ac738d38fa6966aac2cf8156cf286d9/osFiles/iOS/24x%20-%2027.x/24C5037i.json>; Apple Developer release: <https://developer.apple.com/news/releases/?id=11032026a>
+
+## 2026-11-18 catalog update evidence
+
+Accessed on 2026-11-18 for the verified device and OS-build additions in this repository update:
+
+- `iPad19,1` → `iPad mini (A20 Pro)` — AppleDB: <https://api.appledb.dev/device/iPad19%2C1.json>; IPSW.me: <https://api.ipsw.me/v4/device/iPad19%2C1?type=ipsw>
+- `iPad19,2` → `iPad mini (A20 Pro)` — AppleDB: <https://api.appledb.dev/device/iPad19%2C2.json>; IPSW.me: <https://api.ipsw.me/v4/device/iPad19%2C2?type=ipsw>
+- `22H390` → `18.7.12` — AppleDB firmware record: <https://appledb.dev/firmware/iOS/22H390>; AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/86e1392f83917128ec10f439547af9c19d2108ee/osFiles/iOS/22x%20-%2018.x/22H390.json>
+- `23H131` → `26.7.3` — AppleDB firmware record: <https://appledb.dev/firmware/iOS/23H131>; AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/380c52f46116def7ef734b6472c9b817d4170649/osFiles/iOS/23x%20-%2026.x/23H131.json>
+- `24C5049d` → `27.3 beta 2` — AppleDB firmware record: <https://appledb.dev/firmware/iOS/24C5049d>; AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/908ba0a4caf1058c9fa3b5c27d8db7bc013c2653/osFiles/iOS/24x%20-%2027.x/24C5049d.json>
