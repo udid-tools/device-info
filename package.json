@@ -64,7 +64,13 @@
     "eslint": {
       "minimatch": "11.0.4"
     },
-    "postcss-nested": "8.0.1"
+    "postcss-nested": "8.0.1",
+    "typedoc": {
+      "minimatch": {
+        ".": "6.2.3",
+        "brace-expansion": "2.1.8"
+      }
+    }
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
