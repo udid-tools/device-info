@@ -12,6 +12,8 @@ stable releases under npm's `latest` distribution tag.
 
 ### Added
 
+- Added verified OS builds `22H390`, `23H131`, `24B156`, `24B8156`, and `24B91034`.
+
 - Added the verified iOS 27.3 beta 1 build mapping `24C5037i`.
 
 ## [1.0.10] - 2026-10-29
