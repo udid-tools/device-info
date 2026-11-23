@@ -15,6 +15,8 @@ stable releases under npm's `latest` distribution tag.
 - Added verified OS builds `22H390`, `23H131`, `24B156`, `24B8156`, and `24B91034`.
 
 - Added the verified iOS 27.3 beta 1 build mapping `24C5037i`.
+- Added the verified iPad mini (A20 Pro) identifiers `iPad19,1` and `iPad19,2`, and iOS build
+  mappings `22H390`, `23H131`, and `24C5049d`.
 
 ## [1.0.10] - 2026-10-29
 
