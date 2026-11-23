@@ -5,6 +5,8 @@ stable releases under npm's `latest` distribution tag.
 
 ## [Unreleased]
 
+## [1.0.11] - 2026-11-23
+
 ### Security
 
 - Scope TypeDoc to non-vulnerable minimatch 6.2.3 and compatible brace-expansion 2.1.8
@@ -13,7 +15,6 @@ stable releases under npm's `latest` distribution tag.
 ### Added
 
 - Added verified OS builds `22H390`, `23H131`, `24B156`, `24B8156`, and `24B91034`.
-
 - Added the verified iOS 27.3 beta 1 build mapping `24C5037i`.
 - Added the verified iPad mini (A20 Pro) identifiers `iPad19,1` and `iPad19,2`, and iOS build
   mappings `22H390`, `23H131`, and `24C5049d`.
@@ -171,7 +172,8 @@ stable releases under npm's `latest` distribution tag.
 - Offline catalog integrity tests, documentation, issue forms, and weekly catalog discovery.
 - Hardened CI, security scanning, supply-chain attestations, and dual-registry release automation.
 
-[unreleased]: https://github.com/udid-tools/device-info/compare/v1.0.10...HEAD
+[unreleased]: https://github.com/udid-tools/device-info/compare/v1.0.11...HEAD
+[1.0.11]: https://github.com/udid-tools/device-info/compare/v1.0.10...v1.0.11
 [1.0.10]: https://github.com/udid-tools/device-info/compare/v1.0.9...v1.0.10
 [1.0.9]: https://github.com/udid-tools/device-info/compare/v1.0.8...v1.0.9
 [1.0.8]: https://github.com/udid-tools/device-info/compare/v1.0.7...v1.0.8
