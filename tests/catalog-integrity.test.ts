@@ -41,6 +41,11 @@ describe("catalog integrity", () => {
 
   it("contains the verified recent iOS build mapping", () => {
     expect(OS_BUILD_VERSIONS).toMatchObject({
+      "24B91034": "27.2.1",
+      "24B8156": "27.2.1",
+      "24B156": "27.2.1",
+      "23H131": "26.7.3",
+      "22H390": "18.7.12",
       "24B5099f": "27.2 beta 3",
       "24B5110a": "27.2 beta 4",
       "23H127": "26.7.2 release candidate",

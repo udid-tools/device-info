@@ -135,6 +135,17 @@ Accessed on 2026-11-04 for the verified OS-build addition in this repository upd
 
 - `24C5037i` → `27.3 beta 1` — AppleDB firmware record: <https://appledb.dev/firmware/iOS/24C5037i>; AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/e84c08a25ac738d38fa6966aac2cf8156cf286d9/osFiles/iOS/24x%20-%2027.x/24C5037i.json>; Apple Developer release: <https://developer.apple.com/news/releases/?id=11032026a>
 
+## 2026-11-11 catalog update evidence
+
+Accessed on 2026-11-11 for the verified OS-build additions in this repository update:
+
+- `22H390` → `18.7.12` — AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/4f64af21343cd8a87bae8ae3ac9c83e035961386/osFiles/iOS/22x%20-%2018.x/22H390.json>; Apple release notes: <https://support.apple.com/121161#a18712>
+- `23H131` → `26.7.3` — AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/4f64af21343cd8a87bae8ae3ac9c83e035961386/osFiles/iOS/23x%20-%2026.x/23H131.json>; Apple release notes: <https://support.apple.com/123075#a2673>
+- `24B156` → `27.2.1` — AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/4f64af21343cd8a87bae8ae3ac9c83e035961386/osFiles/iOS/24x%20-%2027.x/24B156.json>; Apple release notes: <https://support.apple.com/149076#a2721>
+- `24B8156` → `27.2.1` — AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/4f64af21343cd8a87bae8ae3ac9c83e035961386/osFiles/iPadOS/24x%20-%2027.x/24B8156.json>; Apple release notes: <https://support.apple.com/149075#a2721>
+- `24B91034` → `27.2.1` — AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/4f64af21343cd8a87bae8ae3ac9c83e035961386/osFiles/iOS/24x%20-%2027.x/24B91034.json>; Apple release notes: <https://support.apple.com/149076#a2721>
+- `24C5037i` → `27.3 beta 1` — AppleDB source JSON: <https://raw.githubusercontent.com/littlebyteorg/appledb/4f64af21343cd8a87bae8ae3ac9c83e035961386/osFiles/iOS/24x%20-%2027.x/24C5037i.json>; Apple Developer release: <https://developer.apple.com/news/releases/?id=11032026a>
+
 ## 2026-11-18 catalog update evidence
 
 Accessed on 2026-11-18 for the verified device and OS-build additions in this repository update:
