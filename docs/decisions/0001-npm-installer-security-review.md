@@ -36,4 +36,3 @@ Classify alerts 9 and 10 as false positives for the reviewed implementation rath
 than disable either CodeQL query or exclude the installer from analysis. Revisit this
 review whenever URL validation, integrity verification, download bounds, filesystem
 paths or invocation order change. A changed finding requires fresh review.
-
