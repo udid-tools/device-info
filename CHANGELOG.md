@@ -5,10 +5,16 @@ stable releases under npm's `latest` distribution tag.
 
 ## [Unreleased]
 
+### Security
+
+- Scope TypeDoc to non-vulnerable minimatch 6.2.3 and compatible brace-expansion 2.1.8
+  to resolve GHSA-g3hv-75wg-m249 while preserving its required `matchOne` API.
+
 ### Added
 
-- Added `22H390` → `18.7.12`, `23H131` → `26.7.3`, `24B156`/`24B8156`/`24B91034` → `27.2.1`,
-  and `24C5037i` → `27.3 beta 1`.
+- Added verified OS builds `22H390`, `23H131`, `24B156`, `24B8156`, and `24B91034`.
+
+- Added the verified iOS 27.3 beta 1 build mapping `24C5037i`.
 
 ## [1.0.10] - 2026-10-29
 
